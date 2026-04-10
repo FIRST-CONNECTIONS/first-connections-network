@@ -98,15 +98,18 @@
     border-bottom:1px solid var(--border);
     box-shadow:0 1px 12px rgba(31,54,103,0.06);
   }
-  .logo { font-size:1.1rem; font-weight:800; color:var(--navy); letter-spacing:-0.3px; cursor:pointer; flex-shrink:0; }
+  .logo {
+    font-size:1.1rem; font-weight:800; color:var(--navy);
+    letter-spacing:-0.3px; cursor:pointer; flex-shrink:0;
+  }
   .logo em { font-style:italic; color:var(--gold); }
 
-  /* Hamburger — visible on mobile/tablet */
+  /* ── HAMBURGER ── */
   .hamburger {
     background:none; border:none; cursor:pointer;
     display:flex; flex-direction:column; justify-content:center;
     gap:5px; padding:8px; border-radius:8px;
-    transition:background 0.2s; z-index:110;
+    transition:background 0.2s; z-index:110; flex-shrink:0;
   }
   .hamburger:hover { background:var(--off-white); }
   .hamburger span {
@@ -115,17 +118,19 @@
     transition:transform 0.3s ease, opacity 0.3s ease;
     transform-origin:center;
   }
-  /* Animated X when open */
   .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
   .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 
-  /* Mobile drawer */
+  /* ── MOBILE NAV DRAWER (default — all screens under 1024px) ── */
   .nav-links {
-    display:flex; flex-direction:column;
-    position:fixed; top:64px; left:0; right:0; bottom:0;
+    display:flex;
+    flex-direction:column;
+    position:fixed;
+    top:64px; right:0; bottom:0;
+    width:100%;
     background:var(--white);
-    padding:12px 0 32px;
+    padding:12px 0 40px;
     overflow-y:auto;
     border-top:3px solid var(--gold);
     box-shadow:0 8px 32px rgba(0,0,0,0.12);
@@ -134,62 +139,98 @@
     z-index:105;
   }
   .nav-links.open { transform:translateX(0); }
+
   .nav-links a {
     font-size:1rem; font-weight:600; color:var(--navy);
-    padding:14px 28px; transition:color 0.15s, background 0.15s;
+    padding:14px 28px;
     border-bottom:1px solid var(--border);
+    transition:color 0.15s, background 0.15s;
+    text-decoration:none;
   }
   .nav-links a:last-of-type { border-bottom:none; }
   .nav-links a:hover { color:var(--gold); background:var(--off-white); }
+
+  /* CTA in mobile drawer */
   .nav-cta {
+    display:inline-flex !important;
+    align-items:center; justify-content:center;
     margin:16px 20px 0 !important;
-    display:inline-flex !important; align-items:center; justify-content:center;
+    padding:14px 20px !important;
     background:var(--gold); color:var(--white) !important;
-    border-radius:10px; padding:14px 20px !important;
-    border:none !important; font-weight:700 !important;
-    font-size:0.95rem !important; cursor:pointer;
-    transition:background 0.2s;
+    border:none !important; border-radius:10px;
+    font-weight:700 !important; font-size:0.95rem !important;
+    cursor:pointer; transition:background 0.2s;
+    text-align:center;
   }
   .nav-cta:hover { background:var(--gold-light) !important; }
 
-  /* Tablet (640px+): slightly tighter drawer */
+  /* ── TABLET: panel from right ── */
   @media (min-width:640px) {
-    nav { padding:0 32px; }
-    .nav-links { left:auto; width:300px; right:0; bottom:0; border-top:3px solid var(--gold); box-shadow:-4px 0 32px rgba(0,0,0,0.1); }
+    nav { padding:0 28px; }
+    .nav-links { width:300px; }
   }
 
-  /* Desktop (1024px+): horizontal nav */
+  /* ── DESKTOP: horizontal bar ── */
   @media (min-width:1024px) {
-    nav { padding:0 48px; height:68px; }
-    .hamburger { display:none; }
+    nav { padding:0 20px; height:64px; }
+    .hamburger { display:none !important; }
+
     .nav-links {
-      display:flex !important; flex-direction:row;
-      position:static; transform:none;
-      background:transparent; border:none;
-      box-shadow:none; padding:0;
-      overflow:visible; bottom:auto;
-      align-items:center; gap:2px;
-      transition:none;
+      /* reset all mobile drawer styles */
+      position:static !important;
+      transform:none !important;
+      transition:none !important;
+      top:auto !important; right:auto !important;
+      bottom:auto !important; width:auto !important;
+      height:auto !important;
+      background:transparent !important;
+      border:none !important;
+      box-shadow:none !important;
+      padding:0 !important;
+      overflow:visible !important;
+      /* horizontal layout */
+      display:flex !important;
+      flex-direction:row !important;
+      align-items:center !important;
+      flex-wrap:nowrap;
+      gap:0;
     }
+
     .nav-links a {
-      font-size:0.82rem; font-weight:600;
-      padding:7px 11px; border-bottom:none;
-      border-radius:8px; white-space:nowrap;
+      font-size:0.76rem; font-weight:600;
+      padding:6px 7px;
+      border:none !important;
+      border-radius:6px;
+      white-space:nowrap;
+      color:var(--navy) !important;
     }
-    .nav-links a:hover { background:var(--off-white); color:var(--gold); }
+    .nav-links a:hover {
+      background:var(--off-white) !important;
+      color:var(--gold) !important;
+    }
+
+    /* CTA button on desktop */
     .nav-cta {
       margin:0 0 0 6px !important;
-      padding:9px 18px !important;
-      font-size:0.85rem !important;
+      padding:7px 14px !important;
+      font-size:0.76rem !important;
       border-radius:8px;
+      white-space:nowrap;
     }
   }
 
-  /* Large desktop (1280px+): more breathing room */
+  /* ── LARGE DESKTOP 1280px+ ── */
   @media (min-width:1280px) {
-    nav { padding:0 64px; }
-    .nav-links a { font-size:0.87rem; padding:8px 13px; }
-    .nav-cta { padding:10px 22px !important; font-size:0.88rem !important; }
+    nav { padding:0 32px; }
+    .nav-links a { font-size:0.82rem !important; padding:7px 10px !important; }
+    .nav-cta { padding:8px 18px !important; font-size:0.82rem !important; }
+  }
+
+  /* ── XL DESKTOP 1440px+ ── */
+  @media (min-width:1440px) {
+    nav { padding:0 56px; }
+    .nav-links a { font-size:0.86rem !important; padding:8px 12px !important; }
+    .nav-cta { padding:9px 22px !important; font-size:0.86rem !important; }
   }
 
   /* ── BUTTONS ── */
