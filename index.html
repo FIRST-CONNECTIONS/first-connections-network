@@ -90,25 +90,108 @@
   .form-success p { color:var(--grey); font-size:0.9rem; }
 
   /* ── NAV ── */
+  /* ── NAV ── */
   nav {
     position:sticky; top:0; z-index:100;
     background:var(--white);
     display:flex; align-items:center; justify-content:space-between;
-    padding:0 28px; height:68px;
+    padding:0 20px; height:64px;
     border-bottom:1px solid var(--border);
     box-shadow:0 1px 12px rgba(31,54,103,0.06);
   }
-  .logo { font-size:1.15rem; font-weight:800; color:var(--navy); letter-spacing:-0.3px; cursor:pointer; }
+  .logo { font-size:1.1rem; font-weight:800; color:var(--navy); letter-spacing:-0.3px; cursor:pointer; flex-shrink:0; }
   .logo em { font-style:italic; color:var(--gold); }
-  .hamburger { background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:5px; padding:4px; }
-  .hamburger span { display:block; width:24px; height:2px; background:var(--navy); border-radius:2px; transition:all 0.3s; }
-  .nav-links { display:none; position:absolute; top:68px; left:0; right:0; background:var(--white); border-bottom:3px solid var(--gold); padding:8px 0; flex-direction:column; box-shadow:0 8px 24px rgba(0,0,0,0.08); }
-  .nav-links.open { display:flex; }
-  .nav-links a { font-size:0.88rem; font-weight:600; color:var(--navy); padding:12px 28px; transition:color 0.15s; border-bottom:1px solid var(--border); }
-  .nav-links a:last-child { border:none; }
-  .nav-links a:hover { color:var(--gold); }
-  .nav-cta { display:none; background:var(--gold); color:var(--white) !important; border-radius:8px; padding:10px 20px !important; border:none !important; font-weight:700 !important; cursor:pointer; }
+
+  /* Hamburger — visible on mobile/tablet */
+  .hamburger {
+    background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; justify-content:center;
+    gap:5px; padding:8px; border-radius:8px;
+    transition:background 0.2s; z-index:110;
+  }
+  .hamburger:hover { background:var(--off-white); }
+  .hamburger span {
+    display:block; width:22px; height:2px;
+    background:var(--navy); border-radius:2px;
+    transition:transform 0.3s ease, opacity 0.3s ease;
+    transform-origin:center;
+  }
+  /* Animated X when open */
+  .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+  /* Mobile drawer */
+  .nav-links {
+    display:flex; flex-direction:column;
+    position:fixed; top:64px; left:0; right:0; bottom:0;
+    background:var(--white);
+    padding:12px 0 32px;
+    overflow-y:auto;
+    border-top:3px solid var(--gold);
+    box-shadow:0 8px 32px rgba(0,0,0,0.12);
+    transform:translateX(100%);
+    transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    z-index:105;
+  }
+  .nav-links.open { transform:translateX(0); }
+  .nav-links a {
+    font-size:1rem; font-weight:600; color:var(--navy);
+    padding:14px 28px; transition:color 0.15s, background 0.15s;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-links a:last-of-type { border-bottom:none; }
+  .nav-links a:hover { color:var(--gold); background:var(--off-white); }
+  .nav-cta {
+    margin:16px 20px 0 !important;
+    display:inline-flex !important; align-items:center; justify-content:center;
+    background:var(--gold); color:var(--white) !important;
+    border-radius:10px; padding:14px 20px !important;
+    border:none !important; font-weight:700 !important;
+    font-size:0.95rem !important; cursor:pointer;
+    transition:background 0.2s;
+  }
   .nav-cta:hover { background:var(--gold-light) !important; }
+
+  /* Tablet (640px+): slightly tighter drawer */
+  @media (min-width:640px) {
+    nav { padding:0 32px; }
+    .nav-links { left:auto; width:300px; right:0; bottom:0; border-top:3px solid var(--gold); box-shadow:-4px 0 32px rgba(0,0,0,0.1); }
+  }
+
+  /* Desktop (1024px+): horizontal nav */
+  @media (min-width:1024px) {
+    nav { padding:0 48px; height:68px; }
+    .hamburger { display:none; }
+    .nav-links {
+      display:flex !important; flex-direction:row;
+      position:static; transform:none;
+      background:transparent; border:none;
+      box-shadow:none; padding:0;
+      overflow:visible; bottom:auto;
+      align-items:center; gap:2px;
+      transition:none;
+    }
+    .nav-links a {
+      font-size:0.82rem; font-weight:600;
+      padding:7px 11px; border-bottom:none;
+      border-radius:8px; white-space:nowrap;
+    }
+    .nav-links a:hover { background:var(--off-white); color:var(--gold); }
+    .nav-cta {
+      margin:0 0 0 6px !important;
+      padding:9px 18px !important;
+      font-size:0.85rem !important;
+      border-radius:8px;
+    }
+  }
+
+  /* Large desktop (1280px+): more breathing room */
+  @media (min-width:1280px) {
+    nav { padding:0 64px; }
+    .nav-links a { font-size:0.87rem; padding:8px 13px; }
+    .nav-cta { padding:10px 22px !important; font-size:0.88rem !important; }
+  }
 
   /* ── BUTTONS ── */
   .btn-primary { display:inline-flex; align-items:center; justify-content:center; background:var(--blue); color:var(--white); font-size:0.92rem; font-weight:700; padding:14px 28px; border-radius:10px; border:none; cursor:pointer; transition:background 0.2s, transform 0.15s; width:100%; text-align:center; }
@@ -375,13 +458,7 @@
     .mission-grid { grid-template-columns:repeat(4,1fr); }
   }
   @media (min-width:1024px) {
-    nav { padding:0 56px; }
     section { padding:96px 56px; }
-    .hamburger { display:none; }
-    .nav-links { display:flex !important; position:static; flex-direction:row; border:none; padding:0; box-shadow:none; background:transparent; align-items:center; gap:4px; }
-    .nav-links a { padding:8px 14px; border:none; border-radius:8px; font-size:0.85rem; }
-    .nav-links a:hover { background:var(--off-white); color:var(--gold); }
-    .nav-cta { display:inline-flex !important; }
   }
 
   /* ── PAGE VIEWS ── */
@@ -675,7 +752,7 @@
   <div class="nav-links" id="navMenu">
     <a href="#about">About</a>
     <a href="#network">Our Network</a>
-    <a href="#events">Events</a>
+    <a href="#" onclick="showPage('page-events');return false;">Events</a>
     <a href="#founders">First Founders</a>
     <a href="#podcast">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
@@ -785,41 +862,24 @@
   </div>
 </section>
 
-<!-- ── EVENTS ── -->
-<section class="events" id="events">
+<!-- ── EVENTS TEASER ── -->
+<section class="events" id="events" style="background:var(--off-white);">
   <div class="inner">
     <div class="section-header centered fade-in">
       <div class="section-label">Events &amp; News</div>
       <h2 class="section-title">What's <em>happening</em></h2>
-      <p class="section-sub">Stay tuned for upcoming events and the latest updates from First Connections across the North East region.</p>
+      <p class="section-sub">Monthly networking events across the North East, plus the flagship NE High Street Heroes Awards. See everything that's on.</p>
     </div>
-    <div class="events-grid">
-      <div class="event-card fade-in">
-        <div class="pill-live"><span class="pill-dot"></span> Monthly</div>
-        <h3>Darlington First — Business Networking</h3>
-        <p>Join us every month for free business networking in Darlington. Meet local entrepreneurs, share ideas, and build meaningful connections.</p>
-        <div class="event-btns">
-          <a href="https://www.darlingtonfirst.network/" target="_blank" class="btn-gold">Visit Website &#8594;</a>
-          <a href="https://www.eventbrite.com/cc/darlington-first-business-networking-4823611" target="_blank" class="btn-outline">Book on Eventbrite &#8594;</a>
+    <div style="display:grid;grid-template-columns:1fr;gap:20px;max-width:860px;margin:0 auto 40px;" class="fade-in">
+      <div style="background:var(--white);border:1px solid var(--border);border-top:4px solid var(--gold);border-radius:var(--radius);padding:28px 28px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:var(--card-shadow);">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div class="pill-live" style="margin-bottom:8px;"><span class="pill-dot"></span> Monthly Events</div>
+            <div style="font-size:1.05rem;font-weight:800;color:var(--navy);">Darlington First &amp; Newcastle First Networking</div>
+          </div>
+          <button onclick="showPage('page-events')" class="btn-gold" style="width:auto;padding:12px 24px;font-size:0.88rem;">View All Events →</button>
         </div>
-      </div>
-      <div class="event-card fade-in">
-        <div class="pill-live"><span class="pill-dot"></span> Monthly</div>
-        <h3>Newcastle First — Business Networking</h3>
-        <p>Free monthly business networking in Newcastle. Connect with fellow professionals and business leaders across the heart of the North East.</p>
-        <div class="event-btns">
-          <a href="https://www.newcastlefirst.network/" target="_blank" class="btn-gold">Visit Website &#8594;</a>
-          <a href="https://www.eventbrite.co.uk/o/newcastle-first-business-networking-121173246510" target="_blank" class="btn-outline">Book on Eventbrite &#8594;</a>
-        </div>
-      </div>
-    </div>
-    <div class="awards-callout fade-in">
-      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/NE-HSH.png" alt="NE High Street Heroes Awards launch team">
-      <div class="awards-callout-body">
-        <div class="badge-gold">Votes Now Open!</div>
-        <h3>2026 NE High Street Heroes Awards</h3>
-        <p>Celebrate the businesses and people making our high streets thrive. Voting is now open — have your say and support your local heroes.</p>
-        <a href="https://www.ne-hsh-awards.co.uk/" target="_blank" class="btn-gold" style="width:auto;padding:14px 32px;">Vote Now &amp; View Dates &#8594;</a>
+        <p style="font-size:0.9rem;color:var(--grey);line-height:1.65;margin:0;">Free monthly business networking across the North East — plus the 2026 NE High Street Heroes Awards. Dates, booking links, and the latest news all in one place.</p>
       </div>
     </div>
   </div>
@@ -1046,6 +1106,122 @@
 </section>
 
 </div><!-- /page-main -->
+
+
+<!-- ════════════════════════════════════════
+     PAGE: EVENTS (id="page-events")
+════════════════════════════════════════ -->
+<div class="page" id="page-events">
+
+<!-- ── EVENTS NAV ── -->
+<nav>
+  <div class="logo" onclick="showPage('page-main')" style="cursor:pointer;">First <em>Connections</em></div>
+  <button class="hamburger" id="menuBtnE" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navMenuE">
+    <a href="#" onclick="showPage('page-main');return false;">About</a>
+    <a href="#" onclick="showPage('page-main');return false;">Our Network</a>
+    <a href="#" style="color:var(--gold);">Events</a>
+    <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
+    <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
+    <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+    <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
+    <a href="#" onclick="showPage('page-main');return false;">Contact</a>
+    <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
+  </div>
+</nav>
+
+<!-- ── EVENTS HERO ── -->
+<div style="background:linear-gradient(135deg, var(--navy) 0%, var(--blue-light) 100%);color:white;padding:72px 28px 64px;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(236,179,68,0.06);right:-120px;top:-120px;pointer-events:none;"></div>
+  <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.03);left:-60px;bottom:-60px;pointer-events:none;"></div>
+  <div style="max-width:680px;margin:0 auto;position:relative;z-index:1;">
+    <div style="display:inline-block;background:rgba(236,179,68,0.2);border:1px solid rgba(236,179,68,0.4);color:rgba(255,255,255,0.9);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:22px;">Events &amp; News</div>
+    <h1 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-0.8px;margin-bottom:18px;">What's <em style="font-style:italic;color:var(--gold);">Happening</em></h1>
+    <p style="font-size:1rem;opacity:0.8;line-height:1.75;max-width:520px;margin:0 auto;">Monthly free networking events across the North East, plus the flagship NE High Street Heroes Awards — all in one place.</p>
+  </div>
+</div>
+
+<!-- ── EVENTS MAIN ── -->
+<div style="max-width:1160px;margin:0 auto;padding:64px 28px 96px;">
+
+  <!-- Networking Events -->
+  <div style="margin-bottom:64px;" class="fade-in">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Monthly Networking</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-0.4px;margin-bottom:8px;">Free Events Across the <em style="font-style:italic;color:var(--gold);">North East</em></h2>
+    <p style="font-size:0.92rem;color:var(--grey);line-height:1.65;max-width:560px;margin-bottom:36px;">No membership fees, no barriers — just genuine networking. We ask everyone to buy a coffee to support the host venue. All business sectors welcome.</p>
+
+    <div class="events-grid">
+
+      <!-- Darlington First -->
+      <div class="event-card fade-in" style="align-items:flex-start;text-align:left;">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px;">
+          <div class="pill-live"><span class="pill-dot"></span> Monthly</div>
+          <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:rgba(212,119,10,0.12);color:#b8620a;">📍 Darlington</span>
+        </div>
+        <h3 style="text-align:left;">Darlington First — Business Networking</h3>
+        <p style="text-align:left;">Free monthly business networking in Darlington. Events rotate around local cafés and venues — meet local entrepreneurs, share ideas, and build meaningful connections across the region.</p>
+        <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;width:100%;font-size:0.82rem;color:var(--grey);margin-bottom:4px;">
+          🗓 <strong style="color:var(--navy);">Every Month</strong> — dates on Eventbrite<br>
+          📍 Rotating local venues across Darlington
+        </div>
+        <div class="event-btns" style="width:100%;">
+          <a href="https://www.darlingtonfirst.network/" target="_blank" class="btn-gold">Visit Website &#8594;</a>
+          <a href="https://www.eventbrite.com/cc/darlington-first-business-networking-4823611" target="_blank" class="btn-outline">Book on Eventbrite &#8594;</a>
+        </div>
+      </div>
+
+      <!-- Newcastle First -->
+      <div class="event-card fade-in" style="align-items:flex-start;text-align:left;">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;flex-wrap:wrap;gap:8px;">
+          <div class="pill-live"><span class="pill-dot"></span> Monthly</div>
+          <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:12px;background:rgba(40,69,160,0.12);color:var(--blue-light);">📍 Newcastle</span>
+        </div>
+        <h3 style="text-align:left;">Newcastle First — Business Networking</h3>
+        <p style="text-align:left;">Free monthly business networking in Newcastle. Connect with fellow professionals, entrepreneurs, and business leaders across the heart of the North East.</p>
+        <div style="background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:14px 16px;width:100%;font-size:0.82rem;color:var(--grey);margin-bottom:4px;">
+          🗓 <strong style="color:var(--navy);">Every Month</strong> — dates on Eventbrite<br>
+          📍 Rotating local venues across Newcastle
+        </div>
+        <div class="event-btns" style="width:100%;">
+          <a href="https://www.newcastlefirst.network/" target="_blank" class="btn-gold">Visit Website &#8594;</a>
+          <a href="https://www.eventbrite.co.uk/o/newcastle-first-business-networking-121173246510" target="_blank" class="btn-outline">Book on Eventbrite &#8594;</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Awards -->
+  <div style="margin-bottom:64px;" class="fade-in">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Flagship Initiative</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-0.4px;margin-bottom:8px;">NE High Street <em style="font-style:italic;color:var(--gold);">Heroes Awards</em></h2>
+    <p style="font-size:0.92rem;color:var(--grey);line-height:1.65;max-width:560px;margin-bottom:36px;">Celebrating the businesses and people making our high streets thrive across the North East.</p>
+
+    <div class="awards-callout fade-in">
+      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/NE-HSH.png" alt="NE High Street Heroes Awards launch team">
+      <div class="awards-callout-body">
+        <div class="badge-gold">Votes Now Open!</div>
+        <h3>2026 NE High Street Heroes Awards</h3>
+        <p>Celebrate the businesses and people making our high streets thrive. Voting is now open — have your say and support your local heroes.</p>
+        <a href="https://www.ne-hsh-awards.co.uk/" target="_blank" class="btn-gold" style="width:auto;padding:14px 32px;">Vote Now &amp; View Dates &#8594;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- More Coming Soon -->
+  <div style="background:linear-gradient(135deg, var(--navy), var(--blue-light));border-radius:20px;padding:52px 40px;text-align:center;color:white;position:relative;overflow:hidden;" class="fade-in">
+    <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(236,179,68,0.08);right:-60px;bottom:-60px;pointer-events:none;"></div>
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:14px;">More Coming Soon</div>
+    <h2 style="font-size:clamp(1.4rem,3vw,1.9rem);font-weight:800;margin-bottom:12px;">More <em style="font-style:italic;color:var(--gold);">Coming Soon</em></h2>
+    <p style="opacity:0.8;font-size:0.92rem;max-width:480px;margin:0 auto 28px;line-height:1.7;">We're always looking for great local businesses and venues to partner with. If you'd like to host an event or collaborate with First Connections, get in touch.</p>
+    <button class="btn-gold" style="width:auto;padding:14px 32px;border:none;cursor:pointer;" onclick="showPage('page-main');openModal('contactModal');">📬 Get In Touch</button>
+  </div>
+
+</div><!-- /events-main -->
+
+</div><!-- /page-events -->
 
 
 <!-- ════════════════════════════════════════
@@ -1393,7 +1569,7 @@
         <h4>Navigate</h4>
         <a href="#about">About</a>
         <a href="#network">Our Network</a>
-        <a href="#events">Events</a>
+        <a href="#" onclick="showPage('page-events');return false;">Events</a>
         <a href="#podcast">Podcast</a>
         <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
         <a href="#contact">Contact</a>
@@ -1421,14 +1597,39 @@
 
 <script>
   // ── NAV ──
-  document.getElementById("menuBtn").addEventListener("click", function() {
-    document.getElementById("navMenu").classList.toggle("open");
+  var menuBtn = document.getElementById("menuBtn");
+  var navMenu = document.getElementById("navMenu");
+
+  menuBtn.addEventListener("click", function() {
+    var isOpen = navMenu.classList.toggle("open");
+    menuBtn.classList.toggle("open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
   });
-  document.querySelectorAll(".nav-links a").forEach(function(link) {
-    link.addEventListener("click", function() {
-      if (window.innerWidth < 1024) document.getElementById("navMenu").classList.remove("open");
-    });
+
+  function closeNav() {
+    navMenu.classList.remove("open");
+    menuBtn.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  // Close on nav link click
+  navMenu.querySelectorAll("a").forEach(function(link) {
+    link.addEventListener("click", function() { closeNav(); });
   });
+
+  // Close on outside click (mobile)
+  document.addEventListener("click", function(e) {
+    if (navMenu.classList.contains("open") && !navMenu.contains(e.target) && e.target !== menuBtn && !menuBtn.contains(e.target)) {
+      closeNav();
+    }
+  });
+
+  // Close on scroll (mobile)
+  window.addEventListener("scroll", function() {
+    if (window.innerWidth < 1024 && navMenu.classList.contains("open")) {
+      closeNav();
+    }
+  }, { passive: true });
 
   // ── SCROLL ANIMATIONS ──
   const observer = new IntersectionObserver(function(entries) {
@@ -1543,16 +1744,51 @@
     document.querySelectorAll(".page").forEach(function(p) { p.classList.remove("active"); });
     document.getElementById(pageId).classList.add("active");
     window.scrollTo(0, 0);
-    // Close mobile nav on either page
-    document.getElementById("navMenu").classList.remove("open");
-    if (document.getElementById("navMenuR")) {
-      document.getElementById("navMenuR").classList.remove("open");
-    }
+    document.body.style.overflow = "";
+    ["navMenu","navMenuR","navMenuE"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove("open");
+    });
+    ["menuBtn","menuBtnR","menuBtnE"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove("open");
+    });
   }
 
+  // ── EVENTS NAV HAMBURGER ──
+  document.getElementById("menuBtnE").addEventListener("click", function() {
+    document.getElementById("navMenuE").classList.toggle("open");
+  });
+
+  // ── EVENTS NAV HAMBURGER ──
+  document.getElementById("menuBtnE").addEventListener("click", function() {
+    document.getElementById("navMenuE").classList.toggle("open");
+  });
+
   // ── RESOURCES NAV HAMBURGER ──
-  document.getElementById("menuBtnR").addEventListener("click", function() {
-    document.getElementById("navMenuR").classList.toggle("open");
+  var menuBtnR = document.getElementById("menuBtnR");
+  var navMenuR = document.getElementById("navMenuR");
+
+  menuBtnR.addEventListener("click", function() {
+    var isOpen = navMenuR.classList.toggle("open");
+    menuBtnR.classList.toggle("open", isOpen);
+    document.body.style.overflow = isOpen ? "hidden" : "";
+  });
+
+  document.addEventListener("click", function(e) {
+    if (navMenuR.classList.contains("open") && !navMenuR.contains(e.target) && e.target !== menuBtnR && !menuBtnR.contains(e.target)) {
+      navMenuR.classList.remove("open");
+      menuBtnR.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+  });
+
+  navMenuR.querySelectorAll("a").forEach(function(link) {
+    link.addEventListener("click", function() {
+      navMenuR.classList.remove("open");
+      menuBtnR.classList.remove("open");
+      document.body.style.overflow = "";
+    });
   });
 
   // ── RESOURCES FILTER ──
