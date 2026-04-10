@@ -1671,30 +1671,59 @@
   // ── FORM SUBMISSIONS ──
   function getVal(id) { return document.getElementById(id) ? document.getElementById(id).value.trim() : ""; }
 
-  function submitContact() {
-    var first = getVal("cf-first"), last = getVal("cf-last"),
-        email = getVal("cf-email"), message = getVal("cf-message");
+  async function submitContact() {
+    var first   = getVal("cf-first");
+    var last    = getVal("cf-last");
+    var email   = getVal("cf-email");
+    var phone   = getVal("cf-phone");
+    var company = getVal("cf-company");
+    var subject = getVal("cf-subject");
+    var message = getVal("cf-message");
+
     if (!first || !last || !email || !message) {
       alert("Please fill in your name, email and message.");
       return;
     }
-    var subject = encodeURIComponent("First Connections Enquiry from " + first + " " + last);
-    var body = encodeURIComponent(
-      "Name: " + first + " " + last +
-      "\nEmail: " + email +
-      "\nPhone: " + getVal("cf-phone") +
-      "\nCompany: " + getVal("cf-company") +
-      "\nSubject: " + getVal("cf-subject") +
-      "\n\nMessage:\n" + message
-    );
-    window.location.href = "mailto:hello@first-connections.co.uk?subject=" + subject + "&body=" + body;
-    document.getElementById("contactFormWrap").style.display = "none";
-    document.getElementById("contactSuccess").style.display = "block";
-    setTimeout(function() {
-      closeModal("contactModal");
-      document.getElementById("contactFormWrap").style.display = "block";
-      document.getElementById("contactSuccess").style.display = "none";
-    }, 3500);
+
+    // Disable button to prevent double-submit
+    var btn = document.querySelector("#contactFormWrap .modal-submit");
+    if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+
+    try {
+      var res = await fetch("/.netlify/functions/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: first,
+          lastName:  last,
+          email:     email,
+          phone:     phone,
+          company:   company,
+          subject:   subject,
+          message:   message
+        })
+      });
+
+      if (res.ok) {
+        document.getElementById("contactFormWrap").style.display = "none";
+        document.getElementById("contactSuccess").style.display = "block";
+        setTimeout(function() {
+          closeModal("contactModal");
+          document.getElementById("contactFormWrap").style.display = "block";
+          document.getElementById("contactSuccess").style.display = "none";
+          if (btn) { btn.disabled = false; btn.textContent = "Send Message →"; }
+        }, 3500);
+      } else {
+        var errData = await res.json().catch(function() { return {}; });
+        console.error("Contact form error:", errData);
+        alert("Something went wrong. Please try again or email hello@first-connections.co.uk directly.");
+        if (btn) { btn.disabled = false; btn.textContent = "Send Message →"; }
+      }
+    } catch(err) {
+      console.error("Network error:", err);
+      alert("Something went wrong. Please check your connection and try again.");
+      if (btn) { btn.disabled = false; btn.textContent = "Send Message →"; }
+    }
   }
 
   async function submitNewsletter() {
