@@ -20,7 +20,7 @@ exports.handler = async function(event) {
         LASTNAME: lastName,
         INTEREST: interest || ""
       },
-      listIds: [2],
+      listIds: [5],
       updateEnabled: true
     })
   });
