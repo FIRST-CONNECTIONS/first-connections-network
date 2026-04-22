@@ -1,0 +1,11 @@
+# robots.txt — First Connections
+# https://first-connections.co.uk
+
+User-agent: *
+Allow: /
+
+# Block Netlify function endpoints from indexing
+Disallow: /.netlify/
+
+# Sitemap location
+Sitemap: https://first-connections.co.uk/sitemap.xml
