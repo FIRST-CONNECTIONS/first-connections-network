@@ -795,12 +795,15 @@
 
   /* ── FC OFFERS NAV PILL ── */
   .nav-offers {
-    background:var(--navy) !important; color:white !important;
-    border-radius:8px; padding:6px 14px !important;
+    background:var(--gold) !important; color:white !important;
+    border-radius:8px; padding:7px 14px !important;
     font-weight:700 !important; border:none !important;
     white-space:nowrap; letter-spacing:0.01em;
+    font-size:0.85rem !important; display:inline-flex !important;
+    align-items:center; gap:5px; min-width:fit-content;
+    overflow:visible !important; text-overflow:clip !important;
   }
-  .nav-offers:hover { background:var(--blue-light) !important; color:white !important; }
+  .nav-offers:hover { background:var(--gold-light) !important; color:white !important; transform:translateY(-1px); }
 
   /* ── FC OFFERS PAGE HERO ── */
   .offers-hero {
@@ -1184,7 +1187,7 @@
     <a href="#founders">First Founders</a>
     <a href="#podcast">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
-    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers">⭐ FC Offers</a>
+    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#sponsors">Sponsors</a>
     <a href="#contact">Contact</a>
     <a class="nav-cta" onclick="openModal('contactModal')">Get In Touch</a>
@@ -1582,7 +1585,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
-    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers">⭐ FC Offers</a>
+    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
     <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
@@ -1740,7 +1743,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" style="color:var(--gold);">Resources</a>
-    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers">⭐ FC Offers</a>
+    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
     <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
@@ -2075,7 +2078,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
-    <a href="#" style="color:var(--gold);" class="nav-offers">⭐ FC Offers</a>
+    <a href="#" style="color:var(--gold);" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
     <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
@@ -2356,22 +2359,60 @@
   }
 
   // ── PAGE SWITCHING ──
+  // ── URL ROUTING ──
+  var PAGE_ROUTES = {
+    'page-main':      '/',
+    'page-events':    '/events',
+    'page-resources': '/resources',
+    'page-offers':    '/fc-offers'
+  };
+  var ROUTE_PAGES = {};
+  Object.keys(PAGE_ROUTES).forEach(function(k){ ROUTE_PAGES[PAGE_ROUTES[k]] = k; });
+
   function showPage(pageId) {
     document.querySelectorAll(".page").forEach(function(p) { p.classList.remove("active"); });
     document.getElementById(pageId).classList.add("active");
     window.scrollTo(0, 0);
     document.body.style.overflow = "";
-    ["navMenu","navMenuR","navMenuE"].forEach(function(id) {
+    ["navMenu","navMenuR","navMenuE","navMenuO"].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.classList.remove("open");
     });
-    ["menuBtn","menuBtnR","menuBtnE"].forEach(function(id) {
+    ["menuBtn","menuBtnR","menuBtnE","menuBtnO"].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.classList.remove("open");
     });
-    // Load community offers when offers page is shown
     if(pageId === 'page-offers') loadCommunityOffers();
+    // Update browser URL
+    var route = PAGE_ROUTES[pageId] || '/';
+    if (window.history && window.history.pushState) {
+      window.history.pushState({ pageId: pageId }, '', route);
+    }
   }
+
+  // Handle back/forward navigation
+  window.addEventListener('popstate', function(e) {
+    var pageId = (e.state && e.state.pageId) ? e.state.pageId : 'page-main';
+    document.querySelectorAll(".page").forEach(function(p) { p.classList.remove("active"); });
+    var target = document.getElementById(pageId);
+    if (target) { target.classList.add("active"); window.scrollTo(0,0); }
+    if(pageId === 'page-offers') loadCommunityOffers();
+  });
+
+  // Handle direct URL on page load
+  (function() {
+    var path = window.location.pathname.replace(/\/+$/, '') || '/';
+    var pageId = ROUTE_PAGES[path] || 'page-main';
+    if (pageId !== 'page-main') {
+      document.querySelectorAll(".page").forEach(function(p) { p.classList.remove("active"); });
+      var target = document.getElementById(pageId);
+      if (target) target.classList.add("active");
+      if(pageId === 'page-offers') setTimeout(loadCommunityOffers, 150);
+    }
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState({ pageId: pageId }, '', window.location.pathname);
+    }
+  })();
 
   // ── NAV HAMBURGER — unified handler for all three navs ──
   function initNav(btnId, menuId) {
