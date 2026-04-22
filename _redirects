@@ -1,0 +1,4 @@
+# Netlify redirects — route all paths to index.html for client-side routing
+/events         /index.html     200
+/resources      /index.html     200
+/fc-offers      /index.html     200
