@@ -637,16 +637,42 @@
   .resources-hero::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(236,179,68,0.06); right:-120px; top:-120px; pointer-events:none; }
   .resources-hero::after { content:''; position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.03); left:-60px; bottom:-60px; pointer-events:none; }
   .resources-hero-inner { max-width:680px; margin:0 auto; position:relative; z-index:1; }
-  .filter-bar { background:var(--white); border-bottom:1px solid var(--border); padding:20px 28px; position:sticky; top:68px; z-index:90; box-shadow:0 2px 12px rgba(31,54,103,0.05); }
-  .filter-bar-inner { max-width:1160px; margin:0 auto; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
-  .filter-label { font-size:0.78rem; font-weight:700; color:var(--grey); letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap; }
-  .filter-pills { display:flex; flex-wrap:wrap; gap:8px; }
-  .filter-pill { padding:8px 18px; border-radius:24px; font-size:0.82rem; font-weight:600; border:1.5px solid var(--border); background:var(--white); color:var(--grey); cursor:pointer; transition:all 0.18s; white-space:nowrap; }
-  .filter-pill:hover { border-color:var(--gold); color:var(--navy); }
+  /* ── RESOURCES FILTER BAR ── */
+  .filter-bar { background:var(--white); border-bottom:1px solid var(--border); padding:16px 28px; position:sticky; top:68px; z-index:90; box-shadow:0 2px 12px rgba(31,54,103,0.05); }
+  .filter-bar-inner { max-width:1160px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .res-filter-group { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
+  .filter-label { font-size:0.7rem; font-weight:700; color:var(--grey); letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; min-width:70px; }
+  .filter-pills { display:flex; flex-wrap:wrap; gap:6px; }
+  .filter-pill, .filter-cat {
+    padding:6px 14px; border-radius:20px; font-size:0.78rem; font-weight:600;
+    border:1.5px solid var(--border); background:var(--white); color:var(--grey);
+    cursor:pointer; transition:all 0.18s; white-space:nowrap;
+  }
+  .filter-pill:hover, .filter-cat:hover { border-color:var(--navy); color:var(--navy); background:var(--off-white); }
   .filter-pill.active { background:var(--navy); border-color:var(--navy); color:white; }
-  .filter-pill.active[data-location="darlington"] { background:#D4770A; border-color:#D4770A; }
+  .filter-pill.active[data-location="darlington"] { background:#C56C00; border-color:#C56C00; }
   .filter-pill.active[data-location="durham"] { background:#2E7D32; border-color:#2E7D32; }
   .filter-pill.active[data-location="newcastle"] { background:var(--blue-light); border-color:var(--blue-light); }
+  .filter-cat.active { background:var(--gold); border-color:var(--gold); color:white; }
+  .filter-count { font-size:0.78rem; color:var(--grey); font-weight:500; }
+  /* Search input */
+  .res-search {
+    display:flex; align-items:center; gap:8px;
+    background:var(--off-white); border:1.5px solid var(--border);
+    border-radius:24px; padding:8px 16px; width:100%; max-width:320px;
+    transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .res-search:focus-within { border-color:var(--gold); box-shadow:0 0 0 3px rgba(236,179,68,0.1); }
+  .res-search svg { color:var(--grey); flex-shrink:0; }
+  .res-search input { border:none; background:transparent; font-family:"Inter",sans-serif; font-size:0.84rem; color:var(--navy); outline:none; width:100%; }
+  .res-search input::placeholder { color:var(--grey); }
+  /* Active filter reset */
+  .res-clear-btn { font-size:0.75rem; color:var(--grey); background:none; border:none; cursor:pointer; text-decoration:underline; padding:0; }
+  .res-clear-btn:hover { color:var(--navy); }
+  @media (min-width:1024px) {
+    .filter-bar { padding:16px 56px; }
+    .filter-bar-inner { flex-direction:column; }
+  }
   .filter-count { margin-left:auto; font-size:0.8rem; color:var(--grey); font-weight:500; white-space:nowrap; }
   .resources-main { max-width:1160px; margin:0 auto; padding:56px 28px 96px; }
   .resource-section { margin-bottom:72px; }
@@ -1386,7 +1412,7 @@
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
           <div>
             <div class="pill-live" style="margin-bottom:8px;"><span class="pill-dot"></span> Monthly Events</div>
-            <div style="font-size:1.05rem;font-weight:800;color:var(--navy);">Darlington First &amp; Newcastle First Networking</div>
+            <div style="font-size:1.05rem;font-weight:800;color:var(--navy);">First Connections Network</div>
           </div>
           <button onclick="showPage('page-events')" class="btn-gold" style="width:auto;padding:12px 24px;font-size:0.88rem;">View All Events →</button>
         </div>
@@ -1660,7 +1686,7 @@
   <div class="nav-links" id="navMenuE">
     <a href="#" onclick="showPage('page-main');return false;">About</a>
     <a href="#" onclick="showPage('page-main');return false;">Our Network</a>
-    <a href="#" style="color:var(--gold);">Events</a>
+    <a href="#" style="color:var(--gold);font-weight:700;">Events</a>
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
@@ -1875,7 +1901,7 @@
   <div class="nav-links" id="navMenuR">
     <a href="#" onclick="showPage('page-main');return false;">About</a>
     <a href="#" onclick="showPage('page-main');return false;">Our Network</a>
-    <a href="#" onclick="showPage('page-main');return false;">Events</a>
+    <a href="#" onclick="showPage('page-events');return false;">Events</a>
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" style="color:var(--gold);font-weight:700;">Resources</a>
@@ -1896,16 +1922,41 @@
 </div>
 
 <!-- ── FILTER BAR ── -->
-<div class="filter-bar">
+<div class="filter-bar" id="res-filter-bar">
   <div class="filter-bar-inner">
-    <span class="filter-label">Filter by location:</span>
-    <div class="filter-pills">
-      <button class="filter-pill active" data-location="all">🗺 All Locations</button>
-      <button class="filter-pill" data-location="darlington">📍 Darlington</button>
-      <button class="filter-pill" data-location="durham">📍 Durham</button>
-      <button class="filter-pill" data-location="newcastle">📍 Newcastle</button>
+
+    <!-- Search -->
+    <div class="res-search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="resSearchInput" placeholder="Search resources..." oninput="filterResources()" autocomplete="off">
     </div>
-    <span class="filter-count" id="filterCount">Showing all 7 offers</span>
+
+    <!-- Location filter -->
+    <div class="res-filter-group">
+      <span class="filter-label">Location:</span>
+      <div class="filter-pills" id="locPills">
+        <button class="filter-pill active" data-location="all">All</button>
+        <button class="filter-pill" data-location="darlington">📍 Darlington</button>
+        <button class="filter-pill" data-location="durham">📍 Durham</button>
+        <button class="filter-pill" data-location="newcastle">📍 Newcastle</button>
+      </div>
+    </div>
+
+    <!-- Category filter -->
+    <div class="res-filter-group">
+      <span class="filter-label">Category:</span>
+      <div class="filter-pills" id="catPills">
+        <button class="filter-cat active" data-cat="all">All</button>
+        <button class="filter-cat" data-cat="partner">Partner Offers</button>
+        <button class="filter-cat" data-cat="workspace">Workspace</button>
+        <button class="filter-cat" data-cat="tools">Business Tools</button>
+        <button class="filter-cat" data-cat="wellbeing">Wellbeing</button>
+        <button class="filter-cat" data-cat="employment">Employment</button>
+        <button class="filter-cat" data-cat="tech">Tech & IT</button>
+      </div>
+    </div>
+
+    <span class="filter-count" id="filterCount"></span>
   </div>
 </div>
 
@@ -1921,7 +1972,7 @@
     <p>These partners have made a commitment to the First Connections community — offering real value and exclusive deals to every member.</p>
 
     <!-- The Ironing Man -->
-    <div class="resource-card" data-locations="darlington">
+    <div class="resource-card" data-locations="darlington" data-category="partner">
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">The Ironing Man</div>
@@ -1938,15 +1989,15 @@
       </div>
       <div class="card-body">
         <p>Fast, friendly ironing and laundry service with collection and delivery available across the region. A proud delivery partner of First Connections, supporting our local business community.</p>
-        <p>As part of the First Connections community, you can enjoy an exclusive discount on all their services. Simply quote <strong>Newcastle First Networking</strong> when you get in touch.</p>
+        <p>As part of the First Connections community, you can enjoy an exclusive discount on all their services. Simply quote <strong>First Connections</strong> when you get in touch.</p>
       </div>
       <div class="card-footer">
-        <a class="card-link" href="#" target="_blank">Visit Website →</a>
+        <a class="card-link" href="https://ironing-man.co.uk" target="_blank" rel="noopener">Visit Website →</a>
       </div>
     </div>
 
     <!-- Business Service Hub -->
-    <div class="resource-card" data-locations="newcastle darlington durham">
+    <div class="resource-card" data-locations="newcastle darlington durham" data-category="tools">
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">Business Service Hub</div>
@@ -1983,7 +2034,7 @@
     </div>
 
     <!-- NE BIC -->
-    <div class="resource-card" data-locations="darlington">
+    <div class="resource-card" data-locations="darlington" data-category="workspace">
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">North East BIC — Workspace & Business Support</div>
@@ -2023,7 +2074,7 @@
     </div>
 
     <!-- Roam -->
-    <div class="resource-card" data-locations="newcastle darlington durham">
+    <div class="resource-card" data-locations="newcastle darlington durham" data-category="tools partner">
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">Roam</div>
@@ -2069,11 +2120,18 @@
     <div class="resource-section-header">
       <span class="resource-section-badge badge-community">Community Resources</span>
     </div>
-    <h2>Free tools to support your <em>team &amp; community</em></h2>
-    <p>Free apps built right here in the North East — supporting wellbeing and employment readiness.</p>
+    <h2>Free tools for your <em>people &amp; community</em></h2>
+    <p>Two powerful free apps built right here in the North East — one supporting emotional wellbeing, one building employment readiness. Available to everyone, iOS &amp; Android.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;margin-bottom:8px;">
+      <span style="background:rgba(236,179,68,0.12);border:1px solid rgba(236,179,68,0.3);color:#7a5200;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:6px;">✓ Free forever</span>
+      <span style="background:rgba(236,179,68,0.12);border:1px solid rgba(236,179,68,0.3);color:#7a5200;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:6px;">✓ iOS &amp; Android</span>
+      <span style="background:rgba(236,179,68,0.12);border:1px solid rgba(236,179,68,0.3);color:#7a5200;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:6px;">✓ Built in the North East</span>
+      <span style="background:rgba(236,179,68,0.12);border:1px solid rgba(236,179,68,0.3);color:#7a5200;font-size:0.75rem;font-weight:700;padding:5px 12px;border-radius:6px;">✓ No account needed</span>
+    </div>
 
     <!-- Emotional Wellbeing Indicator -->
-    <div class="resource-card" data-locations="newcastle darlington durham">
+    <div class="resource-card resource-card--featured" data-locations="newcastle darlington durham" data-category="wellbeing">
+      <div class="res-featured-banner">🧠 &nbsp;Emotional Wellbeing — Recommended for all communities</div>
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">Emotional Wellbeing Indicator</div>
@@ -2104,12 +2162,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <a class="card-link" href="#" target="_blank">Visit Website →</a>
+        <a class="card-link-soon" href="#" style="opacity:0.55;cursor:default;font-size:0.8rem;color:var(--grey);font-weight:600;">🔗 Link coming soon</a>
       </div>
     </div>
 
     <!-- Preparation For Employment -->
-    <div class="resource-card" data-locations="newcastle darlington durham">
+    <div class="resource-card resource-card--featured" data-locations="newcastle darlington durham" data-category="employment">
+      <div class="res-featured-banner">💼 &nbsp;Employment Readiness — Earn a Certificate of Employability</div>
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">Preparation For Employment</div>
@@ -2140,12 +2199,12 @@
         </div>
       </div>
       <div class="card-footer">
-        <a class="card-link" href="#" target="_blank">Visit Website →</a>
+        <a class="card-link-soon" href="#" style="opacity:0.55;cursor:default;font-size:0.8rem;color:var(--grey);font-weight:600;">🔗 Link coming soon</a>
       </div>
     </div>
 
     <!-- Surgotech Solutions -->
-    <div class="resource-card" data-locations="newcastle">
+    <div class="resource-card" data-locations="newcastle" data-category="tech">
       <div class="card-top">
         <div class="card-identity">
           <div class="card-name">Surgotech Solutions</div>
@@ -2171,8 +2230,8 @@
         </div>
       </div>
       <div class="card-footer">
-        <a class="card-link" href="#" target="_blank">Visit Website →</a>
-        <span class="card-ref">Reference: Newcastle First Networking</span>
+        <a class="card-link" href="https://surgotechsolutions.co.uk" target="_blank" rel="noopener">Visit Website →</a>
+        <span class="card-ref">Reference: First Connections</span>
       </div>
     </div>
 
@@ -2214,7 +2273,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
-    <a href="#" style="color:var(--gold);" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
+    <a href="#" style="color:var(--gold);font-weight:700;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
     <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
@@ -2300,6 +2359,7 @@
         <a href="#" onclick="showPage('page-events');return false;">Events</a>
         <a href="#podcast">Podcast</a>
         <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+        <a href="#" onclick="showPage('page-offers');return false;">⭐ FC Offers</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-col">
@@ -2586,35 +2646,57 @@
   initNav("menuBtnO", "navMenuO");
 
   // ── RESOURCES FILTER ──
-  var filterPills = document.querySelectorAll(".filter-pill");
+  // ── RESOURCES FILTER ──
   var resourceCards = document.querySelectorAll(".resource-card");
   var countEl = document.getElementById("filterCount");
   var emptyState = document.getElementById("emptyState");
+  var activeLocation = "all";
+  var activeCat = "all";
 
-  function updateCount(visible) {
-    countEl.textContent = visible === resourceCards.length
-      ? "Showing all " + resourceCards.length + " offers"
-      : "Showing " + visible + " of " + resourceCards.length + " offers";
+  function filterResources() {
+    var query = ((document.getElementById("resSearchInput") || {}).value || "").toLowerCase().trim();
+    var visible = 0;
+    resourceCards.forEach(function(card) {
+      var locs = card.getAttribute("data-locations") || "";
+      var cats = card.getAttribute("data-category") || "";
+      var text = card.textContent.toLowerCase();
+      var matchLoc = activeLocation === "all" || locs.includes(activeLocation);
+      var matchCat = activeCat === "all" || cats.includes(activeCat);
+      var matchSearch = !query || text.includes(query);
+      var show = matchLoc && matchCat && matchSearch;
+      card.classList.toggle("hidden", !show);
+      // Also show/hide parent section headers if all cards in section hidden
+      if (show) visible++;
+    });
+    if (countEl) {
+      countEl.textContent = visible === resourceCards.length
+        ? resourceCards.length + " resources"
+        : visible + " of " + resourceCards.length + " resources";
+    }
+    if (emptyState) emptyState.classList.toggle("visible", visible === 0);
   }
 
-  filterPills.forEach(function(pill) {
+  // Location pills
+  document.querySelectorAll(".filter-pill").forEach(function(pill) {
     pill.addEventListener("click", function() {
-      filterPills.forEach(function(p) { p.classList.remove("active"); });
+      document.querySelectorAll(".filter-pill").forEach(function(p) { p.classList.remove("active"); });
       pill.classList.add("active");
-      var loc = pill.getAttribute("data-location");
-      var visible = 0;
-      resourceCards.forEach(function(card) {
-        var locs = card.getAttribute("data-locations") || "";
-        var show = loc === "all" || locs.includes(loc);
-        card.classList.toggle("hidden", !show);
-        if (show) visible++;
-      });
-      updateCount(visible);
-      emptyState.classList.toggle("visible", visible === 0);
+      activeLocation = pill.getAttribute("data-location");
+      filterResources();
     });
   });
 
-  updateCount(resourceCards.length);
+  // Category pills
+  document.querySelectorAll(".filter-cat").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      document.querySelectorAll(".filter-cat").forEach(function(b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      activeCat = btn.getAttribute("data-cat");
+      filterResources();
+    });
+  });
+
+  filterResources();
 
   // ── RESOURCES SCROLL ANIMATIONS ──
   var resObserver = new IntersectionObserver(function(entries) {
