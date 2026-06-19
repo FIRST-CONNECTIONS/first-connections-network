@@ -129,6 +129,7 @@
     --blue-light: #2845A0;
     --navy: #1f3667;
     --gold: #ECB344;
+    --tradene: #C0492B;
     --gold-light: #F5C355;
     --gold-hover: #d4981e;
     --white: #ffffff;
@@ -410,9 +411,11 @@
   .network-card:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(31,54,103,0.12); }
   .network-card.darlington { border-top:4px solid var(--gold); }
   .network-card.newcastle { border-top:4px solid var(--blue); }
+  .network-card.tradene { border-top:4px solid var(--tradene); }
   .network-tag { font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; }
   .network-tag.darlo { color:var(--gold); }
   .network-tag.newc { color:var(--blue); }
+  .network-tag.trade { color:var(--tradene); }
   .network-card h3 { font-size:1.2rem; font-weight:800; color:var(--navy); letter-spacing:-0.3px; }
   .network-card h3 em { font-style:italic; color:var(--gold); }
   .network-card p { font-size:0.92rem; color:var(--grey); line-height:1.65; }
@@ -614,6 +617,7 @@
   }
   @media (min-width:900px) {
     .pillars-grid { grid-template-columns:repeat(4,1fr); }
+    .network-grid { grid-template-columns:repeat(3,1fr); }
     .region-grid { grid-template-columns:repeat(4,1fr); }
     .region-card img { height:190px; }
     .sponsor-grid { grid-template-columns:repeat(3,1fr); }
@@ -1386,7 +1390,7 @@
     <div class="section-header fade-in">
       <div class="section-label">Our Network</div>
       <h2 class="section-title">First Connections is <em>just the beginning</em></h2>
-      <p class="section-sub">Darlington First and Newcastle First are local expressions of one joined-up North East campaign — free, community-first, and open to all.</p>
+      <p class="section-sub">Darlington First, Newcastle First and Trade NE are strands of one joined-up North East campaign — connecting, championing and growing the region's businesses.</p>
     </div>
     <div class="network-grid">
       <div class="network-card darlington fade-in">
@@ -1411,6 +1415,17 @@
         <div class="network-card-btns">
           <a href="https://www.newcastlefirst.network/" target="_blank" class="btn-primary">Visit Website &#8594;</a>
           <a href="https://www.eventbrite.co.uk/o/newcastle-first-business-networking-121173246510" target="_blank" class="btn-outline">Book on Eventbrite &#8594;</a>
+        </div>
+      </div>
+      <div class="network-card tradene fade-in">
+        <div>
+          <div class="network-tag trade">North East</div>
+          <h3>Trade <em>NE</em></h3>
+        </div>
+        <div class="pill-live"><span class="pill-dot"></span> Live Now</div>
+        <p>The business alliance for the North East. Trade NE champions the region with government, hosts flagship trade events in London and the North East, and gives NE business a voice in Westminster.</p>
+        <div class="network-card-btns">
+          <a href="https://trade-ne.netlify.app/" target="_blank" class="btn-gold">Visit Website &#8594;</a>
         </div>
       </div>
     </div>
@@ -1789,6 +1804,23 @@
         <h3>2026 NE High Street Heroes Awards</h3>
         <p>Celebrate the businesses and people making our high streets thrive. Voting is now open — have your say and support your local heroes.</p>
         <a href="https://www.ne-hsh-awards.co.uk/" target="_blank" class="btn-gold" style="width:auto;padding:14px 32px;">Vote Now &amp; View Dates &#8594;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trade NE -->
+  <div style="margin-bottom:64px;" class="fade-in">
+    <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Trade &amp; Policy</div>
+    <h2 style="font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:var(--navy);letter-spacing:-0.4px;margin-bottom:8px;">Trade <em style="font-style:italic;color:var(--gold);">NE</em></h2>
+    <p style="font-size:0.92rem;color:var(--grey);line-height:1.65;max-width:560px;margin-bottom:36px;">The business alliance for the North East — championing the region's trade and giving it a voice in Westminster.</p>
+
+    <div class="awards-callout fade-in" style="border-left-color:var(--tradene);">
+      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-teesside-steel.jpg" alt="North East trade and industry">
+      <div class="awards-callout-body">
+        <div class="badge-gold" style="background:var(--tradene);">New for 2026</div>
+        <h3>A voice for North East trade</h3>
+        <p>Trade NE is the business alliance for the North East of England. We shape policy and engage with government on behalf of the region, and host one to two flagship trade events each year — in London and the North East — celebrating NE trade and opening doors to new opportunities in Westminster and beyond.</p>
+        <a href="https://trade-ne.netlify.app/" target="_blank" class="btn-gold" style="width:auto;padding:14px 32px;">Visit Trade NE &#8594;</a>
       </div>
     </div>
   </div>
@@ -2385,6 +2417,7 @@
         <a href="https://www.darlingtonfirst.network/" target="_blank">Darlington First</a>
         <a href="https://www.newcastlefirst.network/" target="_blank">Newcastle First</a>
         <a href="https://www.ne-hsh-awards.co.uk/" target="_blank">High Street Heroes</a>
+        <a href="https://trade-ne.netlify.app/" target="_blank">Trade NE</a>
       </div>
       <div class="footer-col">
         <h4>Get Involved</h4>
@@ -2396,7 +2429,7 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 First Connections. All rights reserved.</p>
-      <p class="footer-network">Part of the <strong style="color:rgba(255,255,255,0.55);">First Connections Network</strong> &middot; <a href="https://www.darlingtonfirst.network/" target="_blank">Darlington First</a> &middot; <a href="https://www.newcastlefirst.network/" target="_blank">Newcastle First</a></p>
+      <p class="footer-network">Part of the <strong style="color:rgba(255,255,255,0.55);">First Connections Network</strong> &middot; <a href="https://www.darlingtonfirst.network/" target="_blank">Darlington First</a> &middot; <a href="https://www.newcastlefirst.network/" target="_blank">Newcastle First</a> &middot; <a href="https://trade-ne.netlify.app/" target="_blank">Trade NE</a></p>
     </div>
   </div>
 </footer>
