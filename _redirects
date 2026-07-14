@@ -1,7 +1,8 @@
 # Client-side routing
-/events         /index.html     200
-/resources      /index.html     200
-/fc-offers      /index.html     200
+/events           /index.html     200
+/resources        /index.html     200
+/fc-offers        /index.html     200
+/funding-support  /index.html     200
 
 # Dynamic offer sharing — Netlify function handles OG tags
 /offer/*        /.netlify/functions/offer-share    200
