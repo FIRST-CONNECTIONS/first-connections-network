@@ -1126,6 +1126,275 @@
   .share-btn.twitter:hover { border-color:#000; background:#000; color:white; }
   .share-copied { font-size:0.72rem; color:var(--gold); font-weight:600; opacity:0; transition:opacity 0.3s; }
   .share-copied.show { opacity:1; }
+
+  /* ══════════════════════════════════════════
+     PAGE: FUNDING SUPPORT (page-funding)
+  ══════════════════════════════════════════ */
+  .fs-hero {
+    background:linear-gradient(145deg, #0d1733 0%, #1a2d5a 55%, #0f2244 100%);
+    color:white; padding:56px 22px 72px; position:relative; overflow:hidden;
+  }
+  .fs-hero::before {
+    content:''; position:absolute; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(236,179,68,0.08) 0%, transparent 70%);
+    right:-180px; top:-180px; pointer-events:none;
+  }
+  .fs-hero::after {
+    content:''; position:absolute; width:380px; height:380px; border-radius:50%;
+    background:radial-gradient(circle, rgba(40,69,160,0.18) 0%, transparent 70%);
+    left:-120px; bottom:-120px; pointer-events:none;
+  }
+  .fs-hero-inner {
+    max-width:1160px; margin:0 auto; position:relative; z-index:1;
+    display:grid; grid-template-columns:1fr; gap:44px; align-items:center;
+  }
+  .fs-hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(236,179,68,0.14); border:1px solid rgba(236,179,68,0.4);
+    color:var(--gold-light); font-size:0.7rem; font-weight:700;
+    letter-spacing:0.12em; text-transform:uppercase;
+    padding:6px 14px; border-radius:20px; margin-bottom:22px;
+  }
+  .fs-hero-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--gold); }
+  .fs-hero-label {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(255,255,255,0.55); margin-bottom:16px;
+  }
+  .fs-hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:800; line-height:1.08; letter-spacing:-1px; margin-bottom:20px; color:white; }
+  .fs-hero h1 em { font-style:italic; color:var(--gold); }
+  .fs-hero p { font-size:0.95rem; opacity:0.75; line-height:1.75; max-width:480px; margin-bottom:16px; }
+  .fs-hero p:last-of-type { margin-bottom:32px; }
+  .fs-hero p strong { color:white; opacity:0.95; }
+  .fs-hero-btns { display:flex; flex-wrap:wrap; gap:14px; }
+  .fs-btn-primary {
+    background:var(--gold); color:white; font-family:"Inter",sans-serif;
+    font-weight:700; font-size:0.92rem; padding:14px 26px;
+    border:none; border-radius:10px; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:background 0.2s, transform 0.15s;
+    box-shadow:0 4px 16px rgba(236,179,68,0.32);
+  }
+  .fs-btn-primary:hover { background:var(--gold-light); transform:translateY(-1px); }
+  .fs-btn-ghost {
+    background:rgba(255,255,255,0.06); color:white;
+    font-family:"Inter",sans-serif; font-weight:600; font-size:0.92rem;
+    padding:13px 24px; border:1.5px solid rgba(255,255,255,0.25);
+    border-radius:10px; cursor:pointer; text-decoration:none;
+    display:inline-flex; align-items:center; transition:all 0.2s;
+  }
+  .fs-btn-ghost:hover { border-color:rgba(255,255,255,0.55); background:rgba(255,255,255,0.12); }
+  .fs-stats { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .fs-stat-card {
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+    border-radius:14px; padding:20px 22px; backdrop-filter:blur(6px);
+    transition:background 0.2s, border-color 0.2s;
+  }
+  .fs-stat-card:hover { background:rgba(255,255,255,0.11); border-color:rgba(255,255,255,0.2); }
+  .fs-stat-value { font-size:1.55rem; font-weight:800; color:var(--gold); line-height:1.1; margin-bottom:6px; letter-spacing:-0.5px; }
+  .fs-stat-label { font-size:0.82rem; font-weight:700; color:white; margin-bottom:2px; }
+  .fs-stat-sub { font-size:0.72rem; color:rgba(255,255,255,0.5); }
+
+  /* Section base */
+  .fs-section { padding:72px 22px; }
+  .fs-section-inner { max-width:1160px; margin:0 auto; }
+  .fs-section-head { text-align:center; margin-bottom:48px; }
+  .fs-section-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .fs-section-title { font-size:clamp(1.6rem,4vw,2.2rem); font-weight:800; color:var(--navy); line-height:1.15; letter-spacing:-0.5px; margin-bottom:14px; }
+  .fs-section-title em { font-style:italic; color:var(--gold); }
+  .fs-section-sub { color:var(--grey); font-size:0.95rem; line-height:1.7; max-width:640px; margin:0 auto; }
+
+  /* Four ways cards */
+  .fs-help { background:var(--white); }
+  .fs-help-grid { display:grid; grid-template-columns:1fr; gap:16px; }
+  .fs-help-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:14px; padding:24px 22px;
+    transition:transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .fs-help-card:hover { transform:translateY(-3px); box-shadow:0 12px 32px rgba(31,54,103,0.1); border-color:rgba(236,179,68,0.4); }
+  .fs-help-icon {
+    width:44px; height:44px; border-radius:10px;
+    background:rgba(236,179,68,0.12); color:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; font-weight:800;
+  }
+  .fs-help-card h3 { font-size:1rem; font-weight:700; color:var(--navy); }
+  .fs-help-card p { font-size:0.85rem; color:var(--grey); line-height:1.65; }
+
+  /* Process steps */
+  .fs-process { background:var(--off-white); }
+  .fs-steps { display:grid; grid-template-columns:1fr; gap:16px; }
+  .fs-step {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:14px; padding:24px 22px 22px;
+    display:flex; flex-direction:column; gap:10px;
+    position:relative; overflow:hidden;
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .fs-step:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(31,54,103,0.1); }
+  .fs-step-num {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px; border-radius:8px;
+    background:var(--navy); color:var(--gold);
+    font-size:0.85rem; font-weight:800; letter-spacing:0.04em;
+  }
+  .fs-step h4 { font-size:0.98rem; font-weight:700; color:var(--navy); }
+  .fs-step p { font-size:0.85rem; color:var(--grey); line-height:1.6; }
+
+  /* Who we help + case study */
+  .fs-who { background:var(--white); }
+  .fs-who-grid { display:grid; grid-template-columns:1fr; gap:32px; align-items:start; }
+  .fs-who-intro h2 { font-size:clamp(1.5rem,3.6vw,2rem); font-weight:800; color:var(--navy); letter-spacing:-0.5px; margin-bottom:14px; }
+  .fs-who-intro h2 em { font-style:italic; color:var(--gold); }
+  .fs-who-intro > p { font-size:0.95rem; color:var(--grey); line-height:1.7; margin-bottom:22px; }
+  .fs-who-list { list-style:none; display:flex; flex-direction:column; gap:10px; padding:0; }
+  .fs-who-list li { font-size:0.9rem; color:var(--navy); display:flex; align-items:flex-start; gap:10px; line-height:1.55; }
+  .fs-who-list li::before {
+    content:'✓'; flex-shrink:0;
+    width:22px; height:22px; border-radius:50%;
+    background:rgba(236,179,68,0.18); color:var(--gold);
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:0.75rem; margin-top:1px;
+  }
+  .fs-case {
+    background:linear-gradient(145deg, #0d1733 0%, #1a2d5a 100%);
+    border-radius:16px; padding:28px 26px; color:white;
+    position:relative; overflow:hidden;
+  }
+  .fs-case::after {
+    content:''; position:absolute; width:220px; height:220px; border-radius:50%;
+    background:rgba(236,179,68,0.06); right:-70px; bottom:-70px; pointer-events:none;
+  }
+  .fs-case-tag {
+    display:inline-flex; align-items:center; gap:7px;
+    font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); background:rgba(236,179,68,0.14);
+    border:1px solid rgba(236,179,68,0.3);
+    padding:5px 12px; border-radius:20px; margin-bottom:18px;
+  }
+  .fs-case h3 { font-size:1.35rem; font-weight:800; color:white; letter-spacing:-0.4px; margin-bottom:12px; }
+  .fs-case p { font-size:0.88rem; color:rgba(255,255,255,0.75); line-height:1.65; margin-bottom:20px; }
+  .fs-case-meta {
+    padding-top:16px; border-top:1px solid rgba(255,255,255,0.12);
+    font-size:0.75rem; font-style:italic; color:rgba(255,255,255,0.5); line-height:1.55;
+  }
+
+  /* Form + sidebar */
+  .fs-cta { background:var(--off-white); }
+  .fs-cta-grid { display:grid; grid-template-columns:1fr; gap:24px; align-items:start; }
+  .fs-form-card {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:16px; padding:32px 28px; box-shadow:0 8px 32px rgba(31,54,103,0.06);
+  }
+  .fs-form-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .fs-form-card h2 { font-size:1.4rem; font-weight:800; color:var(--navy); letter-spacing:-0.4px; margin-bottom:8px; line-height:1.2; }
+  .fs-form-card h2 em { font-style:italic; color:var(--gold); }
+  .fs-form-card > p { font-size:0.85rem; color:var(--grey); line-height:1.65; margin-bottom:20px; }
+  .fs-form-row { display:grid; grid-template-columns:1fr; gap:12px; margin-bottom:12px; }
+  .fs-field { display:flex; flex-direction:column; gap:5px; }
+  .fs-field label { font-size:0.72rem; font-weight:700; color:var(--grey); letter-spacing:0.02em; }
+  .fs-field input, .fs-field select, .fs-field textarea {
+    width:100%; padding:11px 14px; border:1.5px solid var(--border);
+    border-radius:10px; font-family:"Inter",sans-serif; font-size:0.9rem;
+    color:#1a1a2e; background:var(--white); outline:none;
+    transition:border-color 0.2s, box-shadow 0.2s;
+  }
+  .fs-field input:focus, .fs-field select:focus, .fs-field textarea:focus {
+    border-color:var(--gold); box-shadow:0 0 0 3px rgba(236,179,68,0.14);
+  }
+  .fs-field textarea { min-height:96px; resize:vertical; }
+  .fs-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .fs-chip {
+    padding:7px 14px; border-radius:22px; font-size:0.78rem; font-weight:600;
+    border:1.5px solid var(--border); background:var(--white); color:var(--grey);
+    cursor:pointer; transition:all 0.15s; font-family:"Inter",sans-serif;
+  }
+  .fs-chip:hover { border-color:var(--navy); color:var(--navy); }
+  .fs-chip.active { background:var(--navy); border-color:var(--navy); color:white; }
+  .fs-submit {
+    width:100%; padding:14px; background:var(--navy); color:white;
+    font-family:"Inter",sans-serif; font-weight:700; font-size:0.95rem;
+    border:none; border-radius:10px; cursor:pointer; margin-top:6px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    transition:background 0.2s, transform 0.15s;
+  }
+  .fs-submit:hover { background:var(--blue-light); transform:translateY(-1px); }
+  .fs-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+  .fs-form-note { font-size:0.75rem; color:var(--grey); text-align:center; margin-top:14px; line-height:1.55; }
+  .fs-form-success { display:none; text-align:center; padding:2rem 1rem; }
+  .fs-form-success.show { display:block; }
+  .fs-form-success .tick {
+    width:56px; height:56px; border-radius:50%; background:#eaf3de; color:#3b6d11;
+    font-size:1.6rem; display:flex; align-items:center; justify-content:center; margin:0 auto 14px;
+  }
+  .fs-form-success h4 { color:var(--navy); margin-bottom:8px; font-size:1.1rem; font-weight:800; }
+  .fs-form-success p { color:var(--grey); font-size:0.88rem; }
+
+  .fs-side { display:flex; flex-direction:column; gap:20px; }
+  .fs-why {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:16px; padding:28px 26px;
+  }
+  .fs-why-label { font-size:0.7rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--grey); margin-bottom:10px; }
+  .fs-why h3 { font-size:1.15rem; font-weight:800; color:var(--navy); letter-spacing:-0.3px; margin-bottom:10px; }
+  .fs-why h3 em { font-style:italic; color:var(--gold); }
+  .fs-why > p { font-size:0.87rem; color:var(--grey); line-height:1.7; margin-bottom:18px; }
+  .fs-benefit-list { display:flex; flex-direction:column; gap:10px; }
+  .fs-benefit {
+    background:var(--off-white); border:1px solid var(--border);
+    border-radius:10px; padding:13px 14px;
+    display:flex; align-items:flex-start; gap:12px;
+  }
+  .fs-benefit-icon {
+    flex-shrink:0; width:32px; height:32px; border-radius:8px;
+    background:rgba(236,179,68,0.14); color:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem;
+  }
+  .fs-benefit-body h5 { font-size:0.85rem; font-weight:700; color:var(--navy); margin-bottom:2px; }
+  .fs-benefit-body p { font-size:0.78rem; color:var(--grey); line-height:1.5; }
+  .fs-email-box {
+    background:linear-gradient(145deg, #0d1733 0%, #1a2d5a 100%);
+    color:white; border-radius:16px; padding:26px 24px;
+    position:relative; overflow:hidden;
+  }
+  .fs-email-box::after {
+    content:''; position:absolute; width:180px; height:180px; border-radius:50%;
+    background:rgba(236,179,68,0.06); right:-60px; bottom:-60px; pointer-events:none;
+  }
+  .fs-email-box .fs-form-label { color:var(--gold); }
+  .fs-email-box h4 { font-size:1.1rem; font-weight:800; color:white; letter-spacing:-0.3px; margin-bottom:8px; }
+  .fs-email-box h4 em { font-style:italic; color:var(--gold); }
+  .fs-email-box p { font-size:0.85rem; color:rgba(255,255,255,0.7); line-height:1.65; margin-bottom:16px; }
+  .fs-email-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:white; font-weight:700; font-size:0.9rem;
+    padding:12px 20px; border-radius:10px; text-decoration:none;
+    transition:background 0.2s, transform 0.15s;
+  }
+  .fs-email-btn:hover { background:var(--gold-light); transform:translateY(-1px); }
+
+  /* Responsive breakpoints */
+  @media (min-width:640px) {
+    .fs-hero { padding:80px 28px 88px; }
+    .fs-section { padding:88px 28px; }
+    .fs-help-grid { grid-template-columns:1fr 1fr; }
+    .fs-steps { grid-template-columns:1fr 1fr; }
+    .fs-form-row { grid-template-columns:1fr 1fr; }
+  }
+  @media (min-width:900px) {
+    .fs-help-grid { grid-template-columns:repeat(4,1fr); }
+    .fs-steps { grid-template-columns:repeat(4,1fr); }
+    .fs-who-grid { grid-template-columns:1.15fr 1fr; gap:44px; }
+    .fs-cta-grid { grid-template-columns:1.3fr 1fr; gap:32px; }
+  }
+  @media (min-width:1024px) {
+    .fs-hero { padding:96px 56px 96px; }
+    .fs-hero-inner { grid-template-columns:1.05fr 1fr; gap:64px; }
+    .fs-section { padding:104px 56px; }
+    .fs-stats { grid-template-columns:1fr 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -1314,6 +1583,7 @@
     <a href="#founders">First Founders</a>
     <a href="#podcast">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+    <a href="#" onclick="showPage('page-funding');return false;">Funding Support</a>
     <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#sponsors">Sponsors</a>
     <a href="#contact">Contact</a>
@@ -1645,6 +1915,11 @@
         <span class="sponsor-name-fallback">Surgotech</span>
       </a>
 
+      <a href="#" onclick="showPage('page-funding');return false;" class="sponsor-card sponsor-card-link">
+        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/Metrick%20Limited.png" alt="Metrick" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <span class="sponsor-name-fallback">Metrick</span>
+      </a>
+
     </div>
     <hr class="divider">
     <div class="section-header centered fade-in">
@@ -1723,6 +1998,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+    <a href="#" onclick="showPage('page-funding');return false;">Funding Support</a>
     <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
@@ -1955,6 +2231,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" style="color:var(--gold);font-weight:700;">Resources</a>
+    <a href="#" onclick="showPage('page-funding');return false;">Funding Support</a>
     <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
@@ -2020,6 +2297,38 @@
     </div>
     <h2>Featured <em>Partner Offers</em></h2>
     <p>These partners have made a commitment to the First Connections community — offering real value and exclusive deals to every member.</p>
+
+    <!-- Metrick — Grants, Funding & Tender Support -->
+    <div class="resource-card" data-locations="newcastle darlington durham" data-category="partner">
+      <div class="card-top">
+        <div class="card-identity">
+          <div class="card-name">Metrick <span style="font-weight:500;color:var(--grey);font-size:0.85rem;">— Grants, Funding &amp; Tender Support</span></div>
+          <div class="card-meta">
+            <span class="card-type">Specialist funding consultancy</span>
+            <span class="loc-badge loc-northeast">🗺 All Locations</span>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div class="card-badge badge-partner">Delivery Partner</div>
+          <div class="badge-discount" style="margin-top:6px;">Free</div>
+          <div style="font-size:0.72rem;color:var(--grey);margin-top:2px;">Discovery call for members</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>We've teamed up with <strong>Metrick</strong>, the North East's specialist grants &amp; funding consultancy, to help the First Connections community secure the money and contracts that fuel real growth.</p>
+        <p>From Innovate UK and R&amp;D tax relief to decarbonisation grants and public-sector tenders — Metrick handles the paperwork so you can run your business. Priority access for FC members includes a free, no-obligation discovery call and eligibility check.</p>
+        <div class="features-grid">
+          <div class="feature-item">Grant Funding — application &amp; submission</div>
+          <div class="feature-item">Business Funding — investor intros &amp; pitch decks</div>
+          <div class="feature-item">Tender Support — bid writing &amp; PQQ</div>
+          <div class="feature-item">Accreditations — ISO, Cyber Essentials &amp; more</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="card-link" href="#" onclick="showPage('page-funding');return false;">Explore Funding Support →</a>
+        <span class="card-ref">Powered by Metrick</span>
+      </div>
+    </div>
 
     <!-- The Ironing Man -->
     <div class="resource-card" data-locations="darlington" data-category="partner">
@@ -2323,6 +2632,7 @@
     <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
     <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
     <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+    <a href="#" onclick="showPage('page-funding');return false;">Funding Support</a>
     <a href="#" style="color:var(--gold);font-weight:700;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
     <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
     <a href="#" onclick="showPage('page-main');return false;">Contact</a>
@@ -2394,6 +2704,281 @@
 
 </div><!-- /page-offers -->
 
+
+<!-- ════════════════════════════════════════
+     PAGE: FUNDING SUPPORT (id="page-funding")
+════════════════════════════════════════ -->
+<div class="page" id="page-funding">
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="logo" onclick="showPage('page-main')" style="cursor:pointer;">First <em>Connections</em></div>
+  <button class="hamburger" id="menuBtnF" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="navMenuF">
+    <a href="#" onclick="showPage('page-main');return false;">About</a>
+    <a href="#" onclick="showPage('page-main');return false;">Our Network</a>
+    <a href="#" onclick="showPage('page-events');return false;">Events</a>
+    <a href="#" onclick="showPage('page-main');return false;">First Founders</a>
+    <a href="#" onclick="showPage('page-main');return false;">Podcast</a>
+    <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+    <a href="#" style="color:var(--gold);font-weight:700;">Funding Support</a>
+    <a href="#" onclick="showPage('page-offers');return false;" class="nav-offers"><span>⭐</span><span>FC Offers</span></a>
+    <a href="#" onclick="showPage('page-main');return false;">Sponsors</a>
+    <a href="#" onclick="showPage('page-main');return false;">Contact</a>
+    <a class="nav-cta" onclick="showPage('page-main');openModal('contactModal');">Get In Touch</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="fs-hero">
+  <div class="fs-hero-inner">
+    <div>
+      <div class="fs-hero-badge"><span class="dot"></span>First Connections &nbsp;·&nbsp; Powered by Metrick</div>
+      <div class="fs-hero-label">Grants, Funding &amp; Tender Support</div>
+      <h1>Unlock the funding your <em>business</em> deserves</h1>
+      <p>We've teamed up with <strong>Metrick</strong>, the North East's specialist grants &amp; funding consultancy, to help our community secure the money and contracts that fuel real growth.</p>
+      <p>From Innovate UK and R&amp;D tax relief to decarbonisation grants and public-sector tenders — we do the paperwork, you run your business.</p>
+      <div class="fs-hero-btns">
+        <a class="fs-btn-primary" href="#fs-register">Register your interest →</a>
+        <a class="fs-btn-ghost" href="#fs-help">See what we offer</a>
+      </div>
+    </div>
+    <div class="fs-stats">
+      <div class="fs-stat-card">
+        <div class="fs-stat-value">£2.7m</div>
+        <div class="fs-stat-label">Recent scheme delivered</div>
+        <div class="fs-stat-sub">200-home retrofit · Hull</div>
+      </div>
+      <div class="fs-stat-card">
+        <div class="fs-stat-value">End-to-end</div>
+        <div class="fs-stat-label">Fully managed service</div>
+        <div class="fs-stat-sub">Research, paperwork &amp; submission</div>
+      </div>
+      <div class="fs-stat-card">
+        <div class="fs-stat-value">North East</div>
+        <div class="fs-stat-label">Local &amp; trusted</div>
+        <div class="fs-stat-sub">Founded 2021 · Newton Aycliffe</div>
+      </div>
+      <div class="fs-stat-card">
+        <div class="fs-stat-value">Free</div>
+        <div class="fs-stat-label">Discovery call for members</div>
+        <div class="fs-stat-sub">No obligation, no upfront cost</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUR WAYS WE HELP ── -->
+<section class="fs-section fs-help" id="fs-help">
+  <div class="fs-section-inner">
+    <div class="fs-section-head fade-in">
+      <div class="fs-section-label">What we can help with</div>
+      <h2 class="fs-section-title">Four ways we help you <em>grow</em></h2>
+      <p class="fs-section-sub">Chasing a specific grant, bidding for a public-sector contract, or unlocking private investment — Metrick brings the expertise, First Connections members get priority access.</p>
+    </div>
+    <div class="fs-help-grid fade-in">
+      <div class="fs-help-card">
+        <div class="fs-help-icon">£</div>
+        <h3>Grant Funding</h3>
+        <p>Full grant identification, application &amp; submission. Innovate UK, R&amp;D tax credits, Made Smarter, regional growth &amp; decarbonisation schemes — we find what you're eligible for and handle the paperwork.</p>
+      </div>
+      <div class="fs-help-card">
+        <div class="fs-help-icon">📈</div>
+        <h3>Business Funding</h3>
+        <p>Investment introductions and support with lender-ready business plans, forecasts and pitch decks. Ideal for start-ups, scale-ups and growth-stage SMEs looking beyond the grants ecosystem.</p>
+      </div>
+      <div class="fs-help-card">
+        <div class="fs-help-icon">📄</div>
+        <h3>Tender Support</h3>
+        <p>Public &amp; private-sector tender writing, bid management and PQQ support. Win contracts on Find A Tender, Contracts Finder and framework agreements — from strategy through to submission.</p>
+      </div>
+      <div class="fs-help-card">
+        <div class="fs-help-icon">🛡</div>
+        <h3>Accreditations</h3>
+        <p>ISO 9001, ISO 14001, ISO 27001, Cyber Essentials, SafeContractor and more. The credentials that unlock tenders, win larger contracts &amp; prove operational maturity — often grant-eligible themselves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="fs-section fs-process">
+  <div class="fs-section-inner">
+    <div class="fs-section-head fade-in">
+      <div class="fs-section-label">The Process</div>
+      <h2 class="fs-section-title">How it <em>works</em></h2>
+      <p class="fs-section-sub">From first conversation to funded project in four simple steps. No obligation, no jargon, no upfront cost to explore.</p>
+    </div>
+    <div class="fs-steps fade-in">
+      <div class="fs-step">
+        <div class="fs-step-num">01</div>
+        <h4>Register interest</h4>
+        <p>A short form below — a few details about your business and what you're hoping to fund.</p>
+      </div>
+      <div class="fs-step">
+        <div class="fs-step-num">02</div>
+        <h4>Free discovery call</h4>
+        <p>A friendly, no-obligation conversation to understand your goals and eligibility.</p>
+      </div>
+      <div class="fs-step">
+        <div class="fs-step-num">03</div>
+        <h4>Opportunity match</h4>
+        <p>Metrick pinpoints the grants, tenders or accreditations best suited to your business.</p>
+      </div>
+      <div class="fs-step">
+        <div class="fs-step-num">04</div>
+        <h4>We handle it</h4>
+        <p>Applications and submissions managed end-to-end — you focus on running your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO WE HELP + CASE STUDY ── -->
+<section class="fs-section fs-who">
+  <div class="fs-section-inner">
+    <div class="fs-who-grid fade-in">
+      <div class="fs-who-intro">
+        <div class="fs-section-label" style="text-align:left;">Who we help</div>
+        <h2>Built for <em>North East businesses</em> at every stage</h2>
+        <p>From pre-revenue founders exploring their first grant to established SMEs pursuing seven-figure tenders — if you're based in the region, there's probably funding you don't yet know about.</p>
+        <ul class="fs-who-list">
+          <li>Start-ups &amp; early-stage founders</li>
+          <li>SMEs &amp; growth-stage businesses</li>
+          <li>Charities, CICs &amp; social enterprises</li>
+          <li>Manufacturers &amp; industrial businesses</li>
+          <li>Net-zero &amp; decarbonisation projects</li>
+          <li>Any business tendering for public-sector work</li>
+        </ul>
+      </div>
+      <div class="fs-case">
+        <div class="fs-case-tag">⭐ Recent Success</div>
+        <h3>£2.7m Hull retrofit scheme</h3>
+        <p>Metrick helped deliver a £2.7 million home improvement scheme that retrofitted around 200 properties in Hull with solar panels, modern heating systems and improved insulation — a live example of what's possible with the right partner in your corner.</p>
+        <div class="fs-case-meta">Founded 2021 in Newton Aycliffe · Five-figure investment from Durham Business Growth · Grants platform launching 2026.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REGISTER INTEREST + SIDEBAR ── -->
+<section class="fs-section fs-cta" id="fs-register">
+  <div class="fs-section-inner">
+    <div class="fs-cta-grid fade-in">
+      <!-- Form -->
+      <div class="fs-form-card">
+        <div class="fs-form-label">Register your interest</div>
+        <h2>Let's find the funding <em>you're eligible for</em></h2>
+        <p>Fill in the form and a member of the First Connections team will be in touch to arrange your free discovery call with Metrick. No obligation, no upfront cost.</p>
+        <div id="fs-form-wrap">
+          <div class="fs-form-row">
+            <div class="fs-field">
+              <label for="fs-name">Your name</label>
+              <input type="text" id="fs-name" placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div class="fs-field">
+              <label for="fs-email">Email address</label>
+              <input type="email" id="fs-email" placeholder="jane@yourbusiness.co.uk" autocomplete="email">
+            </div>
+          </div>
+          <div class="fs-form-row">
+            <div class="fs-field">
+              <label for="fs-company">Business / organisation</label>
+              <input type="text" id="fs-company" placeholder="Your business name" autocomplete="organization">
+            </div>
+            <div class="fs-field">
+              <label for="fs-phone">Phone (optional)</label>
+              <input type="tel" id="fs-phone" placeholder="07123 456789" autocomplete="tel">
+            </div>
+          </div>
+          <div class="fs-field" style="margin-bottom:12px;">
+            <label>What are you interested in?</label>
+            <div class="fs-chips" id="fs-interest-chips">
+              <button type="button" class="fs-chip active" data-interest="Grants">Grants</button>
+              <button type="button" class="fs-chip" data-interest="Business Funding">Business Funding</button>
+              <button type="button" class="fs-chip" data-interest="Tenders">Tenders</button>
+              <button type="button" class="fs-chip" data-interest="Accreditations">Accreditations</button>
+              <button type="button" class="fs-chip" data-interest="Not sure yet">Not sure yet</button>
+            </div>
+          </div>
+          <div class="fs-field" style="margin-bottom:12px;">
+            <label for="fs-stage">Business stage</label>
+            <select id="fs-stage">
+              <option value="">Select a stage…</option>
+              <option>Pre-revenue / idea stage</option>
+              <option>Early-stage / start-up</option>
+              <option>Established SME</option>
+              <option>Growth-stage / scaling</option>
+              <option>Charity / CIC / social enterprise</option>
+            </select>
+          </div>
+          <div class="fs-field" style="margin-bottom:12px;">
+            <label for="fs-message">Tell us about your project</label>
+            <textarea id="fs-message" placeholder="A few sentences about what you're building, the sector you're in, and what funding or support you're hoping to unlock…"></textarea>
+          </div>
+          <button class="fs-submit" onclick="submitFunding()" id="fs-submit-btn">Register interest →</button>
+          <p class="fs-form-note">Your details go to the First Connections team, who'll pass them to Metrick to arrange a free discovery call. Typically responded to within 1–2 business days.</p>
+        </div>
+        <div class="fs-form-success" id="fs-form-success">
+          <div class="tick">&#10003;</div>
+          <h4>Registration received!</h4>
+          <p>Thanks — we'll be in touch within 1–2 business days to arrange your discovery call with Metrick.</p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="fs-side">
+        <div class="fs-why">
+          <div class="fs-why-label">Why this partnership?</div>
+          <h3>First <em>Connections</em>, powered by <em>Metrick</em></h3>
+          <p>First Connections exists to help North East businesses grow. Metrick brings the specialist expertise in grants, tenders and accreditations. Together, we're giving our community priority access to funding support that's usually out of reach.</p>
+          <div class="fs-benefit-list">
+            <div class="fs-benefit">
+              <div class="fs-benefit-icon">⭐</div>
+              <div class="fs-benefit-body">
+                <h5>Free for members to explore</h5>
+                <p>Discovery call &amp; eligibility check at no cost.</p>
+              </div>
+            </div>
+            <div class="fs-benefit">
+              <div class="fs-benefit-icon">🛠</div>
+              <div class="fs-benefit-body">
+                <h5>Managed end-to-end</h5>
+                <p>Research, paperwork &amp; submission all handled.</p>
+              </div>
+            </div>
+            <div class="fs-benefit">
+              <div class="fs-benefit-icon">🏠</div>
+              <div class="fs-benefit-body">
+                <h5>Built for the North East</h5>
+                <p>Local knowledge of regional funders &amp; programmes.</p>
+              </div>
+            </div>
+            <div class="fs-benefit">
+              <div class="fs-benefit-icon">🔒</div>
+              <div class="fs-benefit-body">
+                <h5>Confidential &amp; no obligation</h5>
+                <p>Your project stays between you, us and Metrick.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="fs-email-box">
+          <div class="fs-form-label">Prefer email?</div>
+          <h4>Or drop us a <em>line</em></h4>
+          <p>Rather write directly? Send us an email and we'll route it to the partnership team.</p>
+          <a class="fs-email-btn" href="mailto:hello@first-connections.co.uk?subject=Funding%20Support%20Enquiry">hello@first-connections.co.uk</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-funding -->
+
+
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
@@ -2409,6 +2994,7 @@
         <a href="#" onclick="showPage('page-events');return false;">Events</a>
         <a href="#podcast">Podcast</a>
         <a href="#" onclick="showPage('page-resources');return false;">Resources</a>
+        <a href="#" onclick="showPage('page-funding');return false;">💷 Grants &amp; Funding</a>
         <a href="#" onclick="showPage('page-offers');return false;">⭐ FC Offers</a>
         <a href="#contact">Contact</a>
       </div>
@@ -2425,6 +3011,8 @@
         <a onclick="openModal('sponsorModal')">Become a Sponsor</a>
         <a onclick="openModal('contactModal')">Podcast Guest</a>
         <a onclick="openModal('newsletterModal')">Newsletter</a>
+        <a href="#" onclick="showPage('page-funding');return false;">Grants &amp; Funding</a>
+        <a href="mailto:hello@first-connections.co.uk">hello@first-connections.co.uk</a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -2527,6 +3115,71 @@
     }
   }
 
+  // ── FUNDING SUPPORT: interest-chip toggling ──
+  document.addEventListener("click", function(e) {
+    var chip = e.target.closest && e.target.closest(".fs-chip");
+    if (!chip) return;
+    var group = chip.parentElement;
+    group.querySelectorAll(".fs-chip").forEach(function(c) { c.classList.remove("active"); });
+    chip.classList.add("active");
+  });
+
+  async function submitFunding() {
+    var name    = getVal("fs-name");
+    var email   = getVal("fs-email");
+    var company = getVal("fs-company");
+    var phone   = getVal("fs-phone");
+    var stage   = getVal("fs-stage");
+    var message = getVal("fs-message");
+    var activeChip = document.querySelector("#fs-interest-chips .fs-chip.active");
+    var interest = activeChip ? activeChip.getAttribute("data-interest") : "";
+
+    if (!name || !email || !message) {
+      alert("Please add your name, email, and a short note about your project.");
+      return;
+    }
+
+    var nameParts = name.trim().split(/\s+/);
+    var first = nameParts.shift();
+    var last  = nameParts.join(" ") || "";
+
+    var btn = document.getElementById("fs-submit-btn");
+    if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+
+    var body =
+      "Interest area: " + (interest || "Not specified") + "\n" +
+      "Business stage: " + (stage || "Not specified") + "\n\n" +
+      "About the project:\n" + message;
+
+    try {
+      var res = await fetch("/.netlify/functions/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: first,
+          lastName:  last,
+          email:     email,
+          phone:     phone,
+          company:   company,
+          subject:   "Funding Support Enquiry — " + (interest || "General") + " (Metrick)",
+          message:   body
+        })
+      });
+
+      if (res.ok) {
+        document.getElementById("fs-form-wrap").style.display = "none";
+        document.getElementById("fs-form-success").classList.add("show");
+        if (btn) { btn.disabled = false; btn.textContent = "Register interest →"; }
+      } else {
+        alert("Something went wrong. Please try again or email hello@first-connections.co.uk directly.");
+        if (btn) { btn.disabled = false; btn.textContent = "Register interest →"; }
+      }
+    } catch(err) {
+      alert("Something went wrong. Please check your connection and try again.");
+      if (btn) { btn.disabled = false; btn.textContent = "Register interest →"; }
+    }
+  }
+
   async function submitNewsletter() {
     var first   = getVal("nf-first");
     var last    = getVal("nf-last");
@@ -2613,7 +3266,8 @@
     'page-main':      '/',
     'page-events':    '/events',
     'page-resources': '/resources',
-    'page-offers':    '/fc-offers'
+    'page-offers':    '/fc-offers',
+    'page-funding':   '/funding-support'
   };
   var ROUTE_PAGES = {};
   Object.keys(PAGE_ROUTES).forEach(function(k){ ROUTE_PAGES[PAGE_ROUTES[k]] = k; });
@@ -2623,11 +3277,11 @@
     document.getElementById(pageId).classList.add("active");
     window.scrollTo(0, 0);
     document.body.style.overflow = "";
-    ["navMenu","navMenuR","navMenuE","navMenuO"].forEach(function(id) {
+    ["navMenu","navMenuR","navMenuE","navMenuO","navMenuF"].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.classList.remove("open");
     });
-    ["menuBtn","menuBtnR","menuBtnE","menuBtnO"].forEach(function(id) {
+    ["menuBtn","menuBtnR","menuBtnE","menuBtnO","menuBtnF"].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.classList.remove("open");
     });
@@ -2695,6 +3349,7 @@
   initNav("menuBtnR", "navMenuR");
   initNav("menuBtnE", "navMenuE");
   initNav("menuBtnO", "navMenuO");
+  initNav("menuBtnF", "navMenuF");
 
   // ── RESOURCES FILTER ──
   // ── RESOURCES FILTER ──
