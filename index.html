@@ -3224,12 +3224,12 @@
         }, 3500);
       } else {
         var errData = await res.json().catch(function() { return {}; });
-        // silent
+        console.error("Newsletter submit failed:", res.status, errData);
         alert("Something went wrong submitting your details. Please try again or email hello@first-connections.co.uk directly.");
         if (btn) { btn.disabled = false; btn.textContent = "Subscribe Now →"; }
       }
     } catch(err) {
-      // silent
+      console.error("Newsletter submit network error:", err);
       alert("Something went wrong. Please check your connection and try again.");
       if (btn) { btn.disabled = false; btn.textContent = "Subscribe Now →"; }
     }
@@ -3707,7 +3707,7 @@
     if(txt) txt.textContent='Submitting...';
     var fields={
       'Business Name':biz,'Sector':sector,'Description':desc,
-      'Offer Headline':headline,'Site':AT_SITE,'Town / City':town,
+      'Offer Headline':headline,'Site':[AT_SITE],'Town / City':town,
       'Contact Name':cname,'Contact Email':cemail
     };
     if(detail.trim()) fields['Offer Detail']=detail.trim();
@@ -3717,7 +3717,7 @@
     fetch(AT_API+AT_BASE+'/'+AT_TABLE,{
       method:'POST',
       headers:{'Authorization':'Bearer '+AT_TOKEN,'Content-Type':'application/json'},
-      body:JSON.stringify({fields:fields})
+      body:JSON.stringify({fields:fields, typecast:true})
     })
     .then(function(r){
       if(r.ok||r.status===200||r.status===201){
@@ -3732,16 +3732,23 @@
           if(txt) txt.textContent='Submit for review';
         },4000);
       } else {
-        r.json().catch(function(){});
+        r.json().then(function(err){
+          console.error('Offer submit failed:', r.status, err);
+          var detail = (err && err.error && (err.error.message || err.error.type)) || ('HTTP '+r.status);
+          alert('Something went wrong submitting your offer.\n\n'+detail+'\n\nPlease try again, or email hello@first-connections.co.uk with the details.');
+        }).catch(function(){
+          console.error('Offer submit failed with non-JSON body, status:', r.status);
+          alert('Something went wrong submitting your offer (HTTP '+r.status+'). Please try again or email hello@first-connections.co.uk.');
+        });
         if(btn) btn.disabled=false;
         if(txt) txt.textContent='Submit for review';
-        alert('Something went wrong. Please try again.');
       }
     })
-    .catch(function(){
+    .catch(function(err){
+      console.error('Offer submit network error:', err);
       if(btn) btn.disabled=false;
       if(txt) txt.textContent='Submit for review';
-      alert('Connection error. Please try again.');
+      alert('Connection error. Please check your internet and try again.');
     });
   }
 
