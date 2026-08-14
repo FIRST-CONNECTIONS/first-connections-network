@@ -1,0 +1,20 @@
+# First Connections
+
+> First Connections is the North East of England's umbrella business networking platform, connecting Darlington First, Newcastle First, the NE High Street Heroes Awards and First Founders under one regional campaign focused on connection, visibility and opportunity.
+
+First Connections operates free monthly business networking events in Darlington, Newcastle and Durham, runs the NE High Street Heroes Awards, curates a marketplace of member discounts (FC Offers), and connects North East businesses with grant, R&D tax relief and funding support through its partner Metrick.
+
+## Pages
+
+- [Home](https://first-connections.co.uk/): overview of First Connections, its founding pillars, network members and community.
+- [Events](https://first-connections.co.uk/events): free monthly business networking events across the North East (Darlington First, Newcastle First) and the NE High Street Heroes Awards.
+- [Resources](https://first-connections.co.uk/resources): trusted local services and exclusive discounts curated for North East businesses.
+- [FC Offers](https://first-connections.co.uk/fc-offers): a marketplace of exclusive deals submitted by North East businesses to the First Connections community.
+- [Funding Support](https://first-connections.co.uk/funding-support): grants, R&D tax relief, tenders and accreditation support for North East businesses, delivered with Metrick.
+- [Privacy Policy](https://first-connections.co.uk/privacy-policy): how First Connections collects and uses personal data.
+
+## Notes
+
+- First Connections' network members are independently operated: [Darlington First](https://www.darlingtonfirst.network/), [Newcastle First](https://www.newcastlefirst.network/), the [NE High Street Heroes Awards](https://www.ne-hsh-awards.co.uk/), and [Trade NE](https://trade-ne.netlify.app/).
+- Events are free to attend, with no membership fees.
+- General enquiries: hello@first-connections.co.uk
