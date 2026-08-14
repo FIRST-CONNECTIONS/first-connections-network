@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ── PRECONNECT to render-blocking third parties (LCP win) ── -->
+<!-- ── PRECONNECT + PRELOAD (LCP win — home page hero is a CSS background image) ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+<link rel="preload" as="image" href="/images/ne/img-gala-event.jpg" fetchpriority="high">
 
 <!-- ── PRIMARY META ── -->
 <title>First Connections — Business Networking Across the North East</title>
@@ -23,7 +23,7 @@
 <meta property="og:title" content="First Connections — Business Networking Across the North East">
 <meta property="og:description" content="Free networking, exclusive offers & funding support for businesses in Newcastle, Darlington, Durham & Tees Valley. The umbrella platform for the North East business community.">
 <meta property="og:url" content="https://first-connections.co.uk/">
-<meta property="og:image" content="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-gala-event.jpg">
+<meta property="og:image" content="https://first-connections.co.uk/images/ne/img-gala-event.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="First Connections North East Business Networking Event">
@@ -33,7 +33,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="First Connections — Business Networking Across the North East">
 <meta name="twitter:description" content="Free networking, offers & funding support for businesses in Newcastle, Darlington, Durham & Tees Valley.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-gala-event.jpg">
+<meta name="twitter:image" content="https://first-connections.co.uk/images/ne/img-gala-event.jpg">
 <meta name="twitter:image:alt" content="First Connections North East Business Networking">
 
 <!-- ── GEO / LOCAL SEO ── -->
@@ -52,7 +52,7 @@
       "@id": "https://first-connections.co.uk/#organization",
       "name": "First Connections",
       "url": "https://first-connections.co.uk",
-      "logo": "https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/First-Connections-Logo-Small.png",
+      "logo": "https://first-connections.co.uk/images/logos/First-Connections-Logo-Small.png",
       "description": "First Connections is the North East's umbrella business networking platform, connecting people, places and opportunities across the region through networking events, awards, media and founder support.",
       "areaServed": ["Darlington", "Newcastle upon Tyne", "Durham", "North East England"],
       "sameAs": [
@@ -126,7 +126,7 @@
 <!-- PAGE-JSON-LD-INJECT --><!-- build.js replaces this marker with per-page JSON-LD (EventSeries, Service, BreadcrumbList, etc.) when generating events.html, resources.html, fc-offers.html, funding-support.html. On the home page (this file, served as /) the marker stays as an inert HTML comment. -->
 
 <!-- ── FAVICON ── -->
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/First-Connections-Logo-Small.png">
+<link rel="icon" type="image/png" href="/images/logos/First-Connections-Logo-Small.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -370,7 +370,7 @@
   .hero {
     min-height:88vh; display:flex; align-items:center; justify-content:center;
     text-align:center; padding:80px 28px;
-    background:linear-gradient(rgba(20,40,100,0.62),rgba(15,28,63,0.72)), url("https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-gala-event.jpg") center/cover no-repeat;
+    background:linear-gradient(rgba(20,40,100,0.62),rgba(15,28,63,0.72)), url("/images/ne/img-gala-event.jpg") center/cover no-repeat;
     color:var(--white);
   }
   .hero-inner { max-width:720px; margin:0 auto; }
@@ -1624,7 +1624,7 @@
     </div>
     <div class="pillars-grid">
       <div class="pillar-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-gala-event.jpg" alt="Community Events">
+        <img src="/images/ne/img-gala-event.jpg" alt="Community Events" width="1184" height="864" loading="lazy" decoding="async">
         <div class="pillar-body">
           <div class="pillar-num">Pillar One</div>
           <h3>Community Events</h3>
@@ -1632,7 +1632,7 @@
         </div>
       </div>
       <div class="pillar-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/NE-HSH.png" alt="Spotlight Awards">
+        <img src="/images/ne/NE-HSH.png" alt="Spotlight Awards" width="1600" height="900" loading="lazy" decoding="async">
         <div class="pillar-body">
           <div class="pillar-num">Pillar Two</div>
           <h3>Spotlight Awards</h3>
@@ -1640,7 +1640,7 @@
         </div>
       </div>
       <div class="pillar-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-ne-illustration.jpg" alt="Regional Projects">
+        <img src="/images/ne/img-ne-illustration.jpg" alt="Regional Projects" width="1184" height="864" loading="lazy" decoding="async">
         <div class="pillar-body">
           <div class="pillar-num">Pillar Three</div>
           <h3>Regional Projects</h3>
@@ -1648,7 +1648,7 @@
         </div>
       </div>
       <a href="#" onclick="showPage('page-funding');return false;" class="pillar-card fade-in" style="text-decoration:none;color:inherit;cursor:pointer;">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-cafe-owner.jpg" alt="Funding Support powered by Metrick">
+        <img src="/images/ne/img-cafe-owner.jpg" alt="Funding Support powered by Metrick" width="1600" height="900" loading="lazy" decoding="async">
         <div class="pillar-body">
           <div class="pillar-num">Pillar Four</div>
           <h3>Funding Support <span style="font-weight:500;color:var(--grey);font-size:0.85rem;">— powered by Metrick</span></h3>
@@ -1807,7 +1807,7 @@
 <section class="podcast" id="podcast">
   <div class="inner">
     <div class="podcast-inner">
-      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/Podcast-studio-FC.jpg" alt="First Connections Podcast Studio">
+      <img src="/images/ne/Podcast-studio-FC.jpg" alt="First Connections Podcast Studio" width="5355" height="4016" loading="lazy" decoding="async">
       <div class="podcast-content">
         <div class="badge-blue">Featured Show</div>
         <h2>Business <em>Podcast</em></h2>
@@ -1862,19 +1862,19 @@
     </div>
     <div class="region-grid">
       <div class="region-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/Angel_of_the_north1.png" alt="Angel of the North">
+        <img src="/images/ne/Angel_of_the_north1.png" alt="Angel of the North" width="1080" height="1350" loading="lazy" decoding="async">
         <div class="region-body"><h4>Angel of the North</h4><p>Gateshead's iconic symbol of strength and ambition.</p></div>
       </div>
       <div class="region-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/durham-cathederal.jpeg" alt="Durham Cathedral">
+        <img src="/images/ne/durham-cathederal.jpeg" alt="Durham Cathedral" width="267" height="189" loading="lazy" decoding="async">
         <div class="region-body"><h4>Durham Castle &amp; Cathedral</h4><p>A UNESCO World Heritage Site at the heart of County Durham.</p></div>
       </div>
       <div class="region-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/darlo-steam-train.jpeg" alt="Darlington Railways">
+        <img src="/images/ne/darlo-steam-train.jpeg" alt="Darlington Railways" width="281" height="180" loading="lazy" decoding="async">
         <div class="region-body"><h4>Darlington Railways</h4><p>Birthplace of the passenger railway — where it all began.</p></div>
       </div>
       <div class="region-card fade-in">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-teesside-steel.jpg" alt="Teesside Steelworks">
+        <img src="/images/ne/img-teesside-steel.jpg" alt="Teesside Steelworks" width="1184" height="864" loading="lazy" decoding="async">
         <div class="region-body"><h4>Teesside Steelworks</h4><p>A proud industrial legacy that shaped the modern world.</p></div>
       </div>
     </div>
@@ -1892,37 +1892,37 @@
     <div class="sponsor-grid fade-in">
 
       <a href="https://roam-everywhere.com/get-the-app" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/Roam-App_logo.png" alt="Roam" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/Roam-App_logo.png" alt="Roam" style="max-height:44px;max-width:100%;object-fit:contain;" width="500" height="500" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">Roam</span>
       </a>
 
       <a href="https://ironing-man.co.uk" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/The-Ironing-man.png" alt="The Ironing Man" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/The-Ironing-man.png" alt="The Ironing Man" style="max-height:44px;max-width:100%;object-fit:contain;" width="500" height="500" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">The Ironing Man</span>
       </a>
 
       <a href="https://www.ne-bic.co.uk" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/NE-BIC.png" alt="NE BIC" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/NE-BIC.png" alt="NE BIC" style="max-height:44px;max-width:100%;object-fit:contain;" width="500" height="500" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">NE BIC</span>
       </a>
 
       <a href="https://www.nehotels.co.uk" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/NE-Hotel-Association.png" alt="North East Hotels Association" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/NE-Hotel-Association.png" alt="North East Hotels Association" style="max-height:44px;max-width:100%;object-fit:contain;" width="500" height="500" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">North East Hotels Association</span>
       </a>
 
       <a href="https://www.lumo.co.uk" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/lumo-trains.png" alt="Lumo" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/lumo-trains.png" alt="Lumo" style="max-height:44px;max-width:100%;object-fit:contain;" width="744" height="372" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">Lumo</span>
       </a>
 
       <a href="https://surgotechsolutions.co.uk" target="_blank" rel="noopener" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/Surgo-tech-logo-white.png" alt="Surgotech Solutions" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/Surgo-tech-logo-white.png" alt="Surgotech Solutions" style="max-height:44px;max-width:100%;object-fit:contain;" width="1600" height="900" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">Surgotech</span>
       </a>
 
       <a href="#" onclick="showPage('page-funding');return false;" class="sponsor-card sponsor-card-link">
-        <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/FC-Logos/Metrick%20Limited.png" alt="Metrick" style="max-height:44px;max-width:100%;object-fit:contain;">
+        <img src="/images/logos/metrick-limited.png" alt="Metrick" style="max-height:44px;max-width:100%;object-fit:contain;" width="940" height="788" loading="lazy" decoding="async">
         <span class="sponsor-name-fallback">Metrick</span>
       </a>
 
@@ -2080,7 +2080,7 @@
     <p style="font-size:0.92rem;color:var(--grey);line-height:1.65;max-width:560px;margin-bottom:36px;">Celebrating the businesses and people making our high streets thrive across the North East.</p>
 
     <div class="awards-callout fade-in">
-      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/NE-HSH.png" alt="NE High Street Heroes Awards launch team">
+      <img src="/images/ne/NE-HSH.png" alt="NE High Street Heroes Awards launch team" width="1600" height="900" loading="lazy" decoding="async">
       <div class="awards-callout-body">
         <div class="badge-gold">Votes Now Open!</div>
         <h3>2026 NE High Street Heroes Awards</h3>
@@ -2097,7 +2097,7 @@
     <p style="font-size:0.92rem;color:var(--grey);line-height:1.65;max-width:560px;margin-bottom:36px;">The business alliance for the North East — championing the region's trade and giving it a voice in Westminster.</p>
 
     <div class="awards-callout fade-in" style="border-left-color:var(--tradene);">
-      <img src="https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-teesside-steel.jpg" alt="North East trade and industry">
+      <img src="/images/ne/img-teesside-steel.jpg" alt="North East trade and industry" width="1184" height="864" loading="lazy" decoding="async">
       <div class="awards-callout-body">
         <div class="badge-gold" style="background:var(--tradene);">New for 2027</div>
         <h3>A voice for North East trade</h3>
