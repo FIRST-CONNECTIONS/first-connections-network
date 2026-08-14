@@ -24,7 +24,7 @@ const path = require('path');
 
 const ROOT       = __dirname;
 const SOURCE     = path.join(ROOT, 'index.html');
-const OG_IMAGE   = 'https://raw.githubusercontent.com/FIRST-CONNECTIONS/first-connections-network/main/NE%20website%20Images/img-gala-event.jpg';
+const OG_IMAGE   = 'https://first-connections.co.uk/images/ne/img-gala-event.jpg';
 const SITE_URL   = 'https://first-connections.co.uk';
 
 // ── Reusable schema fragments ──────────────────────────────────────────
