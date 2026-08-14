@@ -1,0 +1,13 @@
+# Per-page HTML files are generated at deploy time by build.js
+# (see netlify.toml). Do not commit them — index.html is the source of
+# truth for their content.
+events.html
+resources.html
+fc-offers.html
+funding-support.html
+
+# Netlify build artifacts
+.netlify/
+
+# Node
+node_modules/
