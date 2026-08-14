@@ -2,3 +2,59 @@
   functions = "netlify/functions"
   publish   = "."
   command   = "node build.js"
+
+# ── Cache headers ──────────────────────────────────────────────────────
+# HTML must revalidate every request so a Netlify redeploy is picked up
+# immediately by returning visitors.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Static assets can cache forever — the URLs are content-hashed by the
+# folder structure, and updates come with new filenames.
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Security headers ───────────────────────────────────────────────────
+# Applied to every path. These are baseline defensive headers that cost
+# nothing and get flagged as missing by Lighthouse / Mozilla Observatory.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options   = "nosniff"
+    Referrer-Policy          = "strict-origin-when-cross-origin"
+    Permissions-Policy       = "geolocation=(), camera=(), microphone=(), payment=()"
+    X-Frame-Options          = "SAMEORIGIN"
