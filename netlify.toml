@@ -51,6 +51,14 @@
 # ── Security headers ───────────────────────────────────────────────────
 # Applied to every path. These are baseline defensive headers that cost
 # nothing and get flagged as missing by Lighthouse / Mozilla Observatory.
+#
+# Content-Security-Policy note: index.html relies on inline <style>,
+# inline <script>, and onclick="" attributes throughout (it's a single-file
+# SPA), so script-src/style-src must keep 'unsafe-inline' — a strict
+# nonce/hash-based policy would require a larger refactor of the whole
+# routing/modal system. This policy still meaningfully restricts which
+# origins can load scripts, fonts, frames and objects, which is the bulk
+# of what a CSP defends against.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -58,3 +66,4 @@
     Referrer-Policy          = "strict-origin-when-cross-origin"
     Permissions-Policy       = "geolocation=(), camera=(), microphone=(), payment=()"
     X-Frame-Options          = "SAMEORIGIN"
+    Content-Security-Policy  = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.airtable.com https://fonts.googleapis.com https://fonts.gstatic.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'"
