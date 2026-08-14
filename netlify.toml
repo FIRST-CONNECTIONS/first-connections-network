@@ -1,2 +1,4 @@
 [build]
   functions = "netlify/functions"
+  publish   = "."
+  command   = "node build.js"
