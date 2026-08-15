@@ -4,21 +4,17 @@
   command   = "node build.js"
 
 # ── Cache headers ──────────────────────────────────────────────────────
-# HTML gets a short freshness window so repeat visits within it are
-# instant with no revalidation round trip. stale-while-revalidate means
-# visitors outside that window still get the cached page immediately,
-# while the browser refreshes it in the background for next time — so a
-# Netlify redeploy shows up for returning visitors within ~60s, not
-# instantly, but without paying a revalidation cost on every load.
+# HTML must revalidate every request so a Netlify redeploy is picked up
+# immediately by returning visitors.
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=60, stale-while-revalidate=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/"
   [headers.values]
-    Cache-Control = "public, max-age=60, stale-while-revalidate=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # Static assets can cache forever — the URLs are content-hashed by the
 # folder structure, and updates come with new filenames.
