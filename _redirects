@@ -6,6 +6,7 @@
 /resources        /resources.html         200
 /fc-offers        /fc-offers.html         200
 /funding-support  /funding-support.html   200
+/privacy-policy   /privacy-policy.html    200
 
 # Dynamic offer sharing — Netlify function handles OG tags
 /offer/*        /.netlify/functions/offer-share    200
